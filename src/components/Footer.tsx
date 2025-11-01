@@ -8,13 +8,13 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 grid md:grid-cols-4 gap-8">
         {/* Logo + intro */}
         <div className="flex flex-col gap-3">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-xl bg-bronze/20 border border-bronze/30 grid place-items-center overflow-hidden">
-              {/* Replace this with your real logo file later */}
-              <img src="/logo-placeholder-house.svg" alt="Klusdam" className="w-8 h-8 opacity-90"/>
-            </div>
-            <span className="font-bold text-xl">Klusdam</span>
-          </Link>
+          <Link href="/" aria-label="Klusdam homepage" className="flex items-center">
+  <img
+    src="https://i.ibb.co/CpJPTBch/for-footer-2-1.png"
+    alt="Klusdam logo"
+    className="h-full max-h-14 w-auto object-contain opacity-90"
+  />
+</Link>
           <p className="text-sm/6 opacity-80">
             Allround bouw & renovatie in Schiedam en regio Rotterdam.
           </p>

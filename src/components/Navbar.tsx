@@ -41,13 +41,13 @@ export default function Navbar() {
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-black/5">
       <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
         {/* Bigger logo area with placeholder image box */}
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-14 h-14 rounded-xl bg-bronze/20 border border-bronze/30 grid place-items-center overflow-hidden">
-            {/* Replace src with your logo later */}
-            <img src="/logo-placeholder-house.svg" alt="Klusdam logo" className="w-10 h-10 opacity-80" />
-          </div>
-          <span className="font-bold text-xl tracking-wide">Klusdam</span>
-        </Link>
+        <Link href="/" aria-label="Klusdam homepage" className="flex items-center">
+  <img
+    src="https://i.ibb.co/Z1hM3YWs/final-1.png"
+    alt="Klusdam logo"
+    className="h-full max-h-14 w-auto object-contain opacity-90"
+  />
+</Link>
 
         <nav className="hidden md:flex items-center gap-6 text-[17px]">
           <Link href="/" className="hover:text-bronze font-semibold">{t("home")}</Link>
