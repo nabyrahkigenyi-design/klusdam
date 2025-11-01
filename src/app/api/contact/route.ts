@@ -10,8 +10,7 @@ const contactSchema = z.object({
   phone: z.string().max(40).optional().nullable(),
   service: z.string().max(120).optional().nullable(),
   message: z.string().min(5).max(4000),
-  // Honeypot: should be empty
-  company: z.string().max(120).optional().nullable(),
+  company: z.string().max(120).optional().nullable(), // honeypot
 });
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -32,9 +31,8 @@ export async function POST(req: NextRequest) {
     }
     const data = body.data;
 
-    // Honeypot check: if filled, treat as spam and "succeed" without sending
+    // Honeypot: if filled, silently accept without sending
     if (data.company && data.company.trim().length > 0) {
-      // Optionally: console.warn("Honeypot hit, dropping message:", data);
       return Response.json({ ok: true });
     }
 
@@ -55,16 +53,20 @@ export async function POST(req: NextRequest) {
       return Response.json({ ok: false, error: "ServerMisconfigured" }, { status: 500 });
     }
 
-    // Send to you
+    // Send to YOU
     const sent1 = await resend.emails.send({
       from: fromEmail,
       to: [toEmail],
-      reply_to: data.email,
+      replyTo: data.email, // camelCase
       subject: `Nieuwe offerte-aanvraag: ${data.name}`,
       html: leadHtml,
     });
+    if (sent1.error) {
+      console.error("Resend lead email error:", sent1.error);
+      return Response.json({ ok: false, error: "EmailSendFailed:lead" }, { status: 502 });
+    }
 
-    // Auto-reply to customer
+    // Auto-reply to CUSTOMER
     const confirmHtml = `
       <div style="font-family:system-ui,-apple-system,Segoe UI,Roboto;">
         <h2>Bedankt voor je bericht, ${htmlEscape(data.name)}!</h2>
@@ -88,8 +90,13 @@ export async function POST(req: NextRequest) {
       subject: "We hebben je aanvraag ontvangen – Klusdam",
       html: confirmHtml,
     });
+    if (sent2.error) {
+      console.error("Resend confirm email error:", sent2.error);
+      // Still return ok, since your lead reached you
+      return Response.json({ ok: true, ids: { lead: sent1.data?.id, confirm: null } });
+    }
 
-    return Response.json({ ok: true, ids: { lead: sent1.id, confirm: sent2.id } });
+    return Response.json({ ok: true, ids: { lead: sent1.data?.id, confirm: sent2.data?.id } });
   } catch (e: any) {
     console.error(e);
     return Response.json({ ok: false, error: "ServerError" }, { status: 500 });
