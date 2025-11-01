@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/lib/i18n";
-import MobileActionBar from "@/components/MobileActionBar";
-
 export const metadata: Metadata = {
   title: "Klusdam – Bouw & Renovatie in Schiedam",
   description:
@@ -16,7 +14,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="antialiased bg-cream text-charcoal text-[17px]">
         <LanguageProvider>
           {children}
-          <MobileActionBar />
         </LanguageProvider>
       </body>
     </html>

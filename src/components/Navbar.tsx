@@ -90,9 +90,19 @@ export default function Navbar() {
           <Link href="/contact" className="hover:text-bronze font-semibold">{t("contact")}</Link>
         </nav>
 
-        <button onClick={() => setMobileOpen((v) => !v)} className="md:hidden p-2" aria-label="Menu" aria-expanded={mobileOpen}>
-          ☰
-        </button>
+        <button
+  className="md:hidden inline-flex items-center justify-center rounded-lg p-3 ring-1 ring-black/10"
+  aria-label="Open menu"
+  onClick={() => setMobileOpen((v) => !v)}
+>
+  {/* Bigger hamburger icon */}
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+    <line x1="3" y1="6" x2="21" y2="6" />
+    <line x1="3" y1="12" x2="21" y2="12" />
+    <line x1="3" y1="18" x2="21" y2="18" />
+  </svg>
+</button>
+
       </div>
 
       {mobileOpen && (

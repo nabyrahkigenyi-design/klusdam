@@ -84,7 +84,7 @@ export default function PreHeader() {
           </Link>
         </div>
 
-        {/* Desktop marquee with icons */}
+        {/* Desktop marquee with icons ONLY on desktop now */}
         <div className="marquee flex-1 md:ml-8 hidden md:block">
           <ul>
             {items.concat(items).map((it, idx) => (
@@ -96,27 +96,8 @@ export default function PreHeader() {
           </ul>
         </div>
 
-        {/* Mobile rotator with icon */}
-        <div className="md:hidden opacity-90 inline-flex items-center gap-2">
-          {(() => {
-            const R = items[i].icon;
-            return <R className="w-4 h-4" />;
-          })()}
-          <span>{items[i].text}</span>
-        </div>
-
-        {/* Right: mobile quick-call + socials + language */}
+        {/* Right: socials + language (mobile & desktop) */}
         <div className="flex items-center gap-4">
-          {/* Mobile quick-call button */}
-          <a
-            href="tel:+31687727705"
-            className="md:hidden inline-flex items-center gap-2 px-2 py-1 rounded ring-1 ring-white/30 hover:ring-white/60"
-            aria-label="Bel Klusdam"
-          >
-            <IconPhone className="w-4 h-4" />
-            <span className="text-sm">Bellen</span>
-          </a>
-
           <SocialLinks />
           <LanguageMenu />
         </div>
