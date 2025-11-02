@@ -88,7 +88,7 @@ export const services: Service[] = [
   },
   {
     slug: "stukadoor",
-    img: "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/9mPfb95T/stukadoor.jpg",
     title: "Stukadoor",
     excerpt: "Strakke wanden en plafonds: sausklaar, behangklaar, sierpleister.",
     bullets: [
