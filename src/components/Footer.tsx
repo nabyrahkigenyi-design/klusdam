@@ -53,7 +53,7 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold mb-3">Contact</h4>
           <p className="text-sm">Von Leibnizstraat 23 a<br/>3112 XN Schiedam</p>
-          <p className="mt-2 text-sm"><a href="tel:+31687727705" className="hover:text-bronze">06 87727705</a></p>
+          <p className="mt-2 text-sm"><a href="tel:+31687727705" className="hover:text-bronze">06 34099060</a></p>
           <p className="mt-1 text-sm"><a href="mailto:info@klusdam.nl" className="hover:text-bronze">info@klusdam.nl</a></p>
         </div>
       </div>

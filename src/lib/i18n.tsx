@@ -2,9 +2,11 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-type Lang = "nl" | "en" | "de" | "fr" | "tr" | "ar";
+/* ---------- Types ---------- */
+export type Lang = "nl" | "en" | "de" | "fr" | "tr" | "ar";
 
-const dict: Record<Lang, Record<string,string>> = {
+/* ---------- Dictionary (yours, unchanged) ---------- */
+const dict: Record<Lang, Record<string, string>> = {
   nl: {
     home: "Home", diensten: "Diensten", over: "Over ons", projecten: "Projecten", contact: "Contact",
     cta_quote: "Vrijblijvende offerte", call_now: "Bel direct",
@@ -55,28 +57,71 @@ const dict: Record<Lang, Record<string,string>> = {
   },
 };
 
+/* ---------- Cookie helpers (persist 1 year) ---------- */
+function getCookie(name: string) {
+  if (typeof document === "undefined") return null;
+  const m = document.cookie.match("(^|;)\\s*" + name + "\\s*=\\s*([^;]+)");
+  return m ? decodeURIComponent(m.pop() as string) : null;
+}
+function setCookie(name: string, value: string, days = 365) {
+  if (typeof document === "undefined") return;
+  const maxAge = days * 24 * 60 * 60;
+  // Lax is fine for a language cookie
+  document.cookie = `${name}=${encodeURIComponent(value)}; Max-Age=${maxAge}; Path=/; SameSite=Lax`;
+}
+
+/* ---------- Context ---------- */
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: (k: string) => string };
 const I18nCtx = createContext<Ctx | null>(null);
 
+/* ---------- Provider ---------- */
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>("nl");
+  const [lang, _setLang] = useState<Lang>("nl");
+
+  // On mount: prefer cookie, then localStorage, else default "nl"
   useEffect(() => {
-    const saved = localStorage.getItem("lang") as Lang | null;
-    if (saved) setLang(saved);
+    const fromCookie = getCookie("lang") as Lang | null;
+    const fromLS = (typeof localStorage !== "undefined" && localStorage.getItem("lang")) as Lang | null;
+    const initial = fromCookie || fromLS;
+    if (initial && ["nl", "en", "de", "fr", "tr", "ar"].includes(initial)) {
+      _setLang(initial);
+    }
+    // keep tabs in sync
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === "lang" && e.newValue && ["nl","en","de","fr","tr","ar"].includes(e.newValue)) {
+        _setLang(e.newValue as Lang);
+        setCookie("lang", e.newValue);
+      }
+    };
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
   }, []);
-  const t = (k: string) => dict[lang][k] ?? dict["nl"][k] ?? k;
-  const value = useMemo(() => ({
-    lang, setLang: (l: Lang) => { localStorage.setItem("lang", l); setLang(l); }, t
-  }), [lang]);
+
+  const setLang = (l: Lang) => {
+    _setLang(l);
+    // write to both cookie and localStorage for compatibility
+    setCookie("lang", l);
+    try { localStorage.setItem("lang", l); } catch {}
+  };
+
+  const t = useMemo(() => {
+    const d = dict[lang] || dict.nl;
+    return (k: string) => d[k] ?? dict.nl[k] ?? k;
+  }, [lang]);
+
+  const value = useMemo(() => ({ lang, setLang, t }), [lang, t]);
+
   return <I18nCtx.Provider value={value}>{children}</I18nCtx.Provider>;
 }
 
+/* ---------- Hook ---------- */
 export function useI18n() {
   const ctx = useContext(I18nCtx);
   if (!ctx) throw new Error("useI18n must be used within LanguageProvider");
   return ctx;
 }
 
+/* ---------- Flags (unchanged) ---------- */
 export const flags: Record<Lang, { label: string; src: string }> = {
   nl: { label: "Nederlands", src: "https://flagcdn.com/nl.svg" },
   en: { label: "English",   src: "https://flagcdn.com/gb.svg" },
