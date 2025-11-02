@@ -12,7 +12,7 @@ export default function ContactInline() {
         <div className="rounded-xl bg-cream p-6">
           <h3 className="font-semibold text-lg">Contact</h3>
           <p className="mt-2">Adres: Von Leibnizstraat 23 a, 3112 XN Schiedam</p>
-          <p className="mt-1">Telefoon: <a className="text-bronze" href="tel:+31687727705">06 87727705</a></p>
+          <p className="mt-1">Telefoon: <a className="text-bronze" href="tel:+31634099060">06 34099060</a></p>
           <p className="mt-1">E-mail: <a className="text-bronze" href="mailto:info@klusdam.nl">info@klusdam.nl</a></p>
           <div className="mt-4">
             <iframe

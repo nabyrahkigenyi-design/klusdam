@@ -80,7 +80,7 @@ export async function POST(req: NextRequest) {
         <blockquote style="border-left:4px solid #b08d57;padding-left:10px;color:#444">
           ${htmlEscape(data.message).replace(/\n/g, "<br/>")}
         </blockquote>
-        <p>Met vriendelijke groet,<br/>Klusdam<br/>06 87727705 • Von Leibnizstraat 23a, Schiedam</p>
+        <p>Met vriendelijke groet,<br/>Klusdam<br/>06 34099060 • Von Leibnizstraat 23a, Schiedam</p>
       </div>
     `;
 

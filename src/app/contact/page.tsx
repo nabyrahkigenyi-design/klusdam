@@ -16,7 +16,7 @@ export default function ContactPage() {
         <h1 className="text-3xl font-bold">Contact en vrijblijvende offerte</h1>
         <div className="grid md:grid-cols-2 gap-10 mt-8">
           <div>
-            <p>We reageren snel. Bellen mag ook: <a href="tel:+31687727705" className="text-bronze">06 87727705</a>.</p>
+            <p>We reageren snel. Bellen mag ook: <a href="tel:+31634099060" className="text-bronze">06 34099060</a>.</p>
             <ContactForm />
           </div>
           <div className="rounded-xl bg-cream p-6" data-reveal>

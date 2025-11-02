@@ -5,6 +5,7 @@ import PreHeader from "../../../components/PreHeader";
 import Footer from "../../../components/Footer";
 import ScrollReveal from "../../../components/ScrollReveal";
 import ServiceContent from "../../../components/ServiceContent";
+import { ServiceJSON } from "../../../components/SEO"; // Added import
 
 export async function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -35,6 +36,8 @@ export default async function Page({
       <PreHeader />
       <Navbar />
       <ServiceContent svc={svc} />
+      {/* Service-specific JSON-LD for SEO */}
+      <ServiceJSON slug={svc.slug} />
       <Footer />
     </>
   );

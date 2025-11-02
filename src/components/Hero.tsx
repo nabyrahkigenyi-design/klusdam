@@ -26,7 +26,7 @@ export default function Hero() {
             <Link href="/contact" className="bg-bronze text-charcoal px-5 py-3 rounded-md font-semibold hover:opacity-90">
               {t("cta_quote")}
             </Link>
-            <a href="tel:+31687727705" className="inline-flex items-center gap-2 border border-white/40 px-5 py-3 rounded-md hover:bg-white/10 font-medium">
+            <a href="tel:+31634099060" className="inline-flex items-center gap-2 border border-white/40 px-5 py-3 rounded-md hover:bg-white/10 font-medium">
               {t("call_now")}
             </a>
           </div>

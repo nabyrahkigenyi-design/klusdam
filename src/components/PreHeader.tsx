@@ -72,9 +72,9 @@ export default function PreHeader() {
       <div className="mx-auto max-w-7xl px-4 py-2 flex items-center justify-between">
         {/* Left: phone with icon + offerte (desktop) */}
         <div className="hidden md:flex gap-4 items-center">
-          <a href="tel:+31687727705" className="hover:text-bronze inline-flex items-center gap-2">
+          <a href="tel:+31634099060" className="hover:text-bronze inline-flex items-center gap-2">
             <IconPhone className="w-4 h-4" />
-            <span>06 87727705</span>
+            <span>06 34099060</span>
           </a>
           <Link
             href="/contact"

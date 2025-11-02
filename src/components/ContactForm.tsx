@@ -124,8 +124,8 @@ export default function ContactForm({ compact }: Props) {
         >
           {loading ? "Versturen…" : "Versturen"}
         </button>
-        <a href="tel:+31687727705" className="text-sm underline underline-offset-4">
-          Liever bellen? 06 87727705
+        <a href="tel:+31634099060" className="text-sm underline underline-offset-4">
+          Liever bellen? 06 34099060
         </a>
       </div>
 
