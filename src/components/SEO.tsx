@@ -36,6 +36,12 @@ export function LocalBusinessJSON() {
       "https://www.linkedin.com/",
       "https://wa.me/31634099060",
     ],
+    // ADDED opening hours specification
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "08:00", closes: "18:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "16:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" } // closed
+    ],
   };
   return (
     <Script id="jsonld-local" type="application/ld+json" strategy="afterInteractive">
