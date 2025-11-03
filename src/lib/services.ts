@@ -1,190 +1,225 @@
 // src/lib/services.ts
-// Multilingual services data. Default language is NL; other languages override title/excerpt.
-// You can replace any img URL with your ImgBB direct link (e.g. https://i.ibb.co/xxxxx.jpg)
-
-export type Lang = "nl" | "en" | "de" | "fr" | "tr" | "ar";
-
 export type Service = {
   slug: string;
-  img: string;            // hero + card image
-  title: string;          // default (NL)
-  excerpt: string;        // default (NL)
-  bullets: string[];      // default (NL)
-  i18n?: Partial<Record<Lang, Partial<Pick<Service, "title" | "excerpt" | "bullets">>>>;
+  title: string;
+  excerpt: string;
+  img: string;        // hero background
+  bullets: string[];
+  images: string[];   // 6 images for the gallery (replace with ImgBB links)
+  intro?: string;     // optional richer intro paragraph
+  faq?: { q: string; a: string }[];
 };
 
 export const services: Service[] = [
   {
-    slug: "laminaat",
-    img: "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
+    slug: "laminaat-leggen",
     title: "Laminaat laten leggen",
-    excerpt: "Strak gelegd, duurzaam en geluiddempend. Inclusief ondervloer en plinten.",
+    excerpt:
+      "Strak gelegd laminaat met perfecte plinten en nette afwerking. Snel, stofarm en volgens afspraak.",
+    img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Vakkundige plaatsing met strak patroon",
-      "Ondervloer en plinten exact op maat",
-      "Nauwkeurige afwerking rond kozijnen en leidingen",
+      "Strakke legpatronen (recht, visgraat, Hongaarse punt).",
+      "Vakkundig afgewerkte plinten, dilataties en afkitten.",
+      "Stofarm, snel en zonder verrassingen.",
+      "Scherpe planning en heldere communicatie.",
     ],
-    i18n: {
-      en: { title: "Laminate flooring", excerpt: "Neat, durable laminate—incl. underlay & skirting." },
-      de: { title: "Laminat verlegen", excerpt: "Sauber verlegt, langlebig – inkl. Dämmung & Leisten." },
-      fr: { title: "Pose de stratifié", excerpt: "Pose soignée et durable – sous-couche & plinthes." },
-      tr: { title: "Laminat döşeme", excerpt: "Düzgün ve dayanıklı – şilte ve süpürgelik dahil." },
-      ar: { title: "تركيب أرضيات لامينيت", excerpt: "تركيب متقن ومتين مع عازل وقوائم." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
+    ],
+    intro:
+      "We adviseren over ondervloeren, patronen en plintprofielen. Ons team werkt netjes met beschermde looproutes en dagelijks opgeruimde werkplek.",
   },
+
   {
     slug: "badkamer-renovatie",
-    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
-    title: "Badkamerrenovatie",
-    excerpt: "Complete renovaties: leidingen, tegelwerk, sanitair en afwerking met garantie.",
+    title: "Badkamer renovatie",
+    excerpt:
+      "Compleet vernieuwde badkamer: tegelwerk, sanitair, leidingwerk en afwerking. Eén aanspreekpunt, duidelijke planning.",
+    img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Volledige coördinatie: sloop tot afmontage",
-      "Waterdicht systeem en perfecte afschot",
-      "A-merk materialen en nette afwerking",
+      "Vlak en waterdicht tegelwerk (wanden en vloeren).",
+      "Inloopdouche, nisjes, maatwerk betimmering.",
+      "Loodgieterij & elektra conform normering.",
+      "Heldere planning en garantie op de oplevering.",
     ],
-    i18n: {
-      en: { title: "Bathroom renovation", excerpt: "Full remodel: plumbing, tiling, fixtures & finish." },
-      de: { title: "Badsanierung", excerpt: "Komplette Sanierung: Leitungen, Fliesen, Sanitär." },
-      fr: { title: "Rénovation de salle de bain", excerpt: "Réseaux, carrelage, sanitaires & finitions complètes." },
-      tr: { title: "Banyo tadilatı", excerpt: "Tesisat, seramik, armatür ve son işleriyle komple." },
-      ar: { title: "تجديد الحمّامات", excerpt: "تجديد كامل: تمديدات، تبليط، صحيات وتشطيبات." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1549187774-b4e9f044ff5d?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1464965911861-746a04b4bca5?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1564540574749-5c9a0e4d3c49?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542317854-37f2b6a8fb15?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e86b31?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop",
+    ],
+    intro:
+      "We denken mee over indeling, vochtbestendige materialen en onderhoudsgemak. Tijdens het werk blijft je woning netjes en leefbaar.",
+    faq: [
+      {
+        q: "Hoe lang duurt een complete badkamerrenovatie?",
+        a: "Gemiddeld 10–15 werkdagen, afhankelijk van omvang en levertijden. Je krijgt vooraf een heldere planning.",
+      },
+      {
+        q: "Werken jullie stofarm?",
+        a: "Ja, we dekken af, zetten stofschotten waar nodig en gebruiken professionele afzuiging.",
+      },
+    ],
   },
+
   {
     slug: "plavuizen-vloer",
-    img: "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
-    title: "Plavuizen vloer",
-    excerpt: "Strak tegelwerk op patroon, vlak, met de juiste voegen en dilataties.",
+    title: "Plavuizen vloer leggen",
+    excerpt:
+      "Strak gelegde plavuizen, perfect gevoegd en uitgevlakt. Ook grootformaat en visgraat patronen.",
+    img: "https://images.unsplash.com/photo-1560185008-b033106af2d1?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Perfecte uitlijning en voegbreedte",
-      "Patronen: visgraat, recht, halfsteens, etc.",
-      "Vlak en duurzaam met de juiste lijm/primer",
+      "Grootformaat en patronen zoals visgraat.",
+      "Vlak volgens toleranties, strak voegwerk.",
+      "Vloerverwarming-vriendelijke opbouw en lijmen.",
+      "Nauwkeurige inmetingen en nette oplevering.",
     ],
-    i18n: {
-      en: { title: "Tiled floors", excerpt: "Perfect alignment, patterns, durable finish." },
-      de: { title: "Fliesenboden", excerpt: "Saubere Verlegung, Muster und langlebige Oberfläche." },
-      fr: { title: "Sol carrelé", excerpt: "Alignement précis, motifs et finition durable." },
-      tr: { title: "Seramik zemin", excerpt: "Kusursuz hizalama, desenler ve dayanıklı sonuç." },
-      ar: { title: "أرضيات بلاط", excerpt: "محاذاة دقيقة ونقوش وتشطيب متين." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
+    ],
   },
+
   {
     slug: "schilder",
-    img: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1600&auto=format&fit=crop",
-    title: "Schilder",
-    excerpt: "Binnen- en buitenschilderwerk met strakke lijnen en duurzame lakken.",
+    title: "Schilderwerk",
+    excerpt:
+      "Strak en duurzaam schilderwerk binnen en buiten. Voorbereiding, reparatie en professionele afwerking.",
+    img: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Voorbehandeling en herstel van ondergronden",
-      "Strakke randen, stofarm, snel droog",
-      "Topcoats met hoge slijtvastheid",
+      "Voorbewerking: ontvetten, schuren, plamuren.",
+      "A-merk verven, juiste laagopbouw.",
+      "Strakke snijranden, nette ruimtes.",
+      "Heldere afspraken en nazorg.",
     ],
-    i18n: {
-      en: { title: "Painting", excerpt: "Interior & exterior painting with durable finishes." },
-      de: { title: "Malerarbeiten", excerpt: "Innen/Außen – präzise Kanten, langlebige Lacke." },
-      fr: { title: "Peinture", excerpt: "Intérieur/extérieur, finitions durables et nettes." },
-      tr: { title: "Boya", excerpt: "İç/dış boya – dayanıklı ve temiz işçilik." },
-      ar: { title: "أعمال الدهان", excerpt: "دهان داخلي وخارجي بتشطيبات متينة." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1600&auto=format&fit=crop",
+    ],
   },
+
   {
     slug: "stukadoor",
-    img: "https://i.ibb.co/9mPfb95T/stukadoor.jpg",
     title: "Stukadoor",
-    excerpt: "Strakke wanden en plafonds: sausklaar, behangklaar, sierpleister.",
+    excerpt:
+      "Strak stucwerk klaar voor verf of behang. Wand- en plafondafwerking met oog voor detail.",
+    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Perfecte vlakheid en hoeken",
-      "Sausklaar of sierpleister, naar wens",
-      "Stofbeperkt en netjes opgeleverd",
+      "Glad stucwerk of lichte structuur.",
+      "Haakse hoeken en nette aansluitingen.",
+      "Snelle droging met juiste ventilatie.",
+      "Schoon opgeleverd en stofbeperkt.",
     ],
-    i18n: {
-      en: { title: "Plastering", excerpt: "Perfectly smooth walls & ceilings." },
-      de: { title: "Verputzarbeiten", excerpt: "Glatte Wände/Decken oder Strukturputz." },
-      fr: { title: "Plâtrerie", excerpt: "Murs/plafonds lisses ou enduits décoratifs." },
-      tr: { title: "Sıva", excerpt: "Düz tavan/duvar veya dekoratif sıva." },
-      ar: { title: "أعمال اللياسة", excerpt: "جدران وأسقف ملساء أو لياسة ديكورية." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542240170-2a1c9a789b6e?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542317854-37f2b6a8fb15?q=80&w=1600&auto=format&fit=crop",
+    ],
   },
+
   {
     slug: "tegelzetter",
-    img: "https://images.unsplash.com/photo-1584622781564-1f1a43d2b3cf?q=80&w=1600&auto=format&fit=crop",
     title: "Tegelzetter",
-    excerpt: "Wand- en vloertegels op waterpas, met perfecte snedes en voegen.",
+    excerpt:
+      "Nauwkeurig tegelwerk met strakke voegen, in natte ruimtes en woonvloeren. Patronen en grootformaat.",
+    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Haarscherpe snedes (zaag/tegelknipper)",
-      "Perfecte uitlijning en vlakheid",
-      "Voeg- en kitwerk met topmaterialen",
+      "Laser-uitlijnen en strak snijwerk.",
+      "Waterdichte opbouw in badkamers/WC.",
+      "Grootformaat en visgraat mogelijk.",
+      "Correcte voeg- en kitafwerking.",
     ],
-    i18n: {
-      en: { title: "Tiling", excerpt: "Walls & floors tiled level with clean cuts." },
-      de: { title: "Fliesenleger", excerpt: "Wand/ Boden – exakt geschnitten & verlegt." },
-      fr: { title: "Carrelage", excerpt: "Murs/sols au niveau, coupes nettes." },
-      tr: { title: "Seramik döşeme", excerpt: "Düzgün kesimler, düzgün derzler." },
-      ar: { title: "تبليط", excerpt: "تبليط الجدران والأرضيات بمستوى دقيق." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560185008-b033106af2d1?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop",
+    ],
   },
+
   {
     slug: "vloerverwarming",
-    img: "https://images.unsplash.com/photo-1615876234886-fd9a39f2a91a?q=80&w=1600&auto=format&fit=crop",
     title: "Vloerverwarming",
-    excerpt: "Frezen, verdelers en legplannen voor gelijkmatige warmte en laag verbruik.",
+    excerpt:
+      "Comfortabele, energiezuinige vloerverwarming: infrezen, verdelers en druktest. Klaar voor afwerkvloer/tegels.",
+    img: "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Vakkundig frezen en buizen leggen",
-      "Optimale verdeler en zones",
-      "Na-isolatie en juiste opbouwhoogtes",
+      "Infrezen, leggen en aansluiten van groepen.",
+      "Waterzijdig inregelen en druktest.",
+      "Samen met plavuizen of laminaat mogelijk.",
+      "Uitleg over bediening en nazorg.",
     ],
-    i18n: {
-      en: { title: "Underfloor heating", excerpt: "Even heat, low consumption—pro installation." },
-      de: { title: "Fußbodenheizung", excerpt: "Gleichmäßige Wärme, fachgerecht installiert." },
-      fr: { title: "Chauffage au sol", excerpt: "Chaleur homogène & consommation réduite." },
-      tr: { title: "Yerden ısıtma", excerpt: "Dengeli ısı ve düşük tüketim." },
-      ar: { title: "تدفئة أرضية", excerpt: "حرارة متوازنة واستهلاك منخفض بتثبيت احترافي." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1560185008-b033106af2d1?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600573472550-8090b5e86b31?q=80&w=1600&auto=format&fit=crop",
+    ],
   },
+
   {
     slug: "wc-renovatie",
-    img: "https://images.unsplash.com/photo-1572038572866-4e4c27c1c31b?q=80&w=1600&auto=format&fit=crop",
     title: "WC renovatie",
-    excerpt: "Compact en strak: hangtoilet, betegeling, kit en ventilatie.",
+    excerpt:
+      "Compacte renovatie van toilet: tegelwerk, hangtoilet, nis en afwerking. Snel klaar en supernetjes.",
+    img: "https://images.unsplash.com/photo-1542317854-37f2b6a8fb15?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Strakke tegelverdeling in kleine ruimtes",
-      "Hangtoilet en inbouwreservoir",
-      "Net kitwerk en ventilatieoplossing",
+      "Strak tegelwerk en voeg-/kitafwerking.",
+      "Inbouwreservoir, hangtoilet en nisje.",
+      "Snelle doorlooptijd, stofarm.",
+      "Transparante kosten en planning.",
     ],
-    i18n: {
-      en: { title: "WC renovation", excerpt: "Compact & clean—tiling, wall-hung toilet, sealing." },
-      de: { title: "WC-Sanierung", excerpt: "Kompakt & sauber – Fliesen, Hänge-WC, Fugen." },
-      fr: { title: "Rénovation WC", excerpt: "WC suspendu, carrelage, joints & ventilation." },
-      tr: { title: "WC yenileme", excerpt: "Kompakt ve şık çözüm." },
-      ar: { title: "تجديد المرحاض", excerpt: "حلول مدمجة أنيقة: تبليط ومرحاض معلّق." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1542317854-37f2b6a8fb15?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1464965911861-746a04b4bca5?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1549187774-b4e9f044ff5d?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1564540574749-5c9a0e4d3c49?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542240170-2a1c9a789b6e?q=80&w=1600&auto=format&fit=crop",
+    ],
   },
+
   {
     slug: "timmerwerk",
-    img: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=1600&auto=format&fit=crop",
     title: "Timmerwerk",
-    excerpt: "Maatwerk kasten, kozijnen, plafonds en herstelwerk door vakmensen.",
+    excerpt:
+      "Maatwerk interieurbouw, plafonds, wanden en reparaties. Strak en duurzaam met oog voor detail.",
+    img: "https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?q=80&w=1600&auto=format&fit=crop",
     bullets: [
-      "Maatwerk oplossingen en strakke inbouw",
-      "Duurzame houtsoorten en beslag",
-      "Nauwkeurige afwerking en lak",
+      "Maatwerk kasten, ombouwen en koofwerk.",
+      "Egalisatie, aftimmering en afwerking.",
+      "Passend advies bij materiaalkeuze.",
+      "Netjes gewerkt: afdekken en opruimen.",
     ],
-    i18n: {
-      en: { title: "Carpentry", excerpt: "Custom cabinetry, frames, ceilings & repairs." },
-      de: { title: "Tischlerarbeiten", excerpt: "Maßanfertigungen, Zargen, Decken & Reparaturen." },
-      fr: { title: "Menuiserie", excerpt: "Sur-mesure: rangements, huisseries, plafonds." },
-      tr: { title: "Marangozluk", excerpt: "Özel dolaplar, kasalar ve onarımlar." },
-      ar: { title: "أعمال النجارة", excerpt: "خزائن ومشغولات خشبية مخصّصة وإصلاحات." },
-    },
+    images: [
+      "https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
+    ],
   },
 ];
-
-// helpers to access localized fields
-export function svcTitle(s: Service, lang: Lang) {
-  return s.i18n?.[lang]?.title ?? s.title;
-}
-export function svcExcerpt(s: Service, lang: Lang) {
-  return s.i18n?.[lang]?.excerpt ?? s.excerpt;
-}
-export function svcBullets(s: Service, lang: Lang) {
-  return s.i18n?.[lang]?.bullets ?? s.bullets;
-}
