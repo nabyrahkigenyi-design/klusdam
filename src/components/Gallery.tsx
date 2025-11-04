@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PROJECT_CATEGORIES, projects, type Project, type Category, categoryCounts } from "@/lib/projects";
-import { useI18n } from "@/lib/i18n";
+import { useI18n } from "@/lib/i18n"; // Import is already present, but confirming use
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // --- ADDED IMPORTS ---
@@ -27,7 +27,7 @@ type ImageItem = {
 };
 
 export default function Gallery() {
-  const { t } = useI18n();
+  const { t } = useI18n(); // Initialized i18n
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -231,20 +231,28 @@ export default function Gallery() {
       <div className="mx-auto max-w-7xl px-4">
         
         {/* BREADCRUMBS ADDED */}
-        <Breadcrumbs trail={[{ href: "/projecten", label: "Projecten" }]} />
+        <Breadcrumbs trail={[{ href: "/projecten", label: t("breadcrumbs.projects") }]} />
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mt-4"> {/* Added mt-4 for spacing after breadcrumbs */}
-          <h1 className="text-3xl md:text-4xl font-extrabold">Projecten</h1>
+          {/* Section title translated */}
+          <h1 className="text-3xl md:text-4xl font-extrabold">{t("breadcrumbs.projects")}</h1>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
             <div className="flex flex-wrap gap-2">
-              <FilterPill label="Alle" count={allImageItems.length} active={category === ALL} onClick={() => setCategory(ALL)} />
+              {/* Filter pill labels are dynamic, no translation needed here */}
+              <FilterPill label={t("gallery.all")} count={allImageItems.length} active={category === ALL} onClick={() => setCategory(ALL)} />
               {PROJECT_CATEGORIES.map((c) => (
                 <FilterPill key={c} label={c} count={counts[c] ?? 0} active={category === c} onClick={() => setCategory(c)} />
               ))}
             </div>
 
-            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Zoeken…" className="w-full sm:w-80 rounded-lg border border-black/10 px-3 py-2" />
+            {/* Search placeholder translated */}
+            <input 
+              value={query} 
+              onChange={(e) => setQuery(e.target.value)} 
+              placeholder={t("gallery.searchPlaceholder")} 
+              className="w-full sm:w-80 rounded-lg border border-black/10 px-3 py-2" 
+            />
           </div>
         </div>
 
@@ -290,9 +298,14 @@ export default function Gallery() {
 }
 
 function FilterPill({ label, count, active, onClick }: { label: string; count?: number; active?: boolean; onClick: () => void; }) {
+  const { t } = useI18n(); // Use i18n for "Alle" (All) label
+
+  // Dynamic translation for "Alle" pill label
+  const pillLabel = label === "Alle" ? t("gallery.all") : label;
+
   return (
     <button onClick={onClick} className={cx("px-3 py-1.5 rounded-full text-sm border inline-flex items-center gap-2", active ? "bg-bronze text-charcoal border-bronze" : "bg-white border-black/10 hover:bg-cream")}>
-      <span>{label}</span>
+      <span>{pillLabel}</span>
       {typeof count === "number" && <span className={cx("text-[11px] px-1.5 py-[1px] rounded-full", active ? "bg-charcoal text-bronze" : "bg-black/10 text-charcoal/80")}>{count}</span>}
     </button>
   );
