@@ -3,16 +3,18 @@
 import Script from "next/script";
 import { services } from "@/lib/services";
 
+// --- Klusdam Site Details (Using the CORRECT phone number: +31 6 34099060) ---
 const site = {
   name: "Klusdam",
   url: "https://klusdam.nl",
-  phone: "+31 6 34099060",
+  phone: "+31 6 34099060", // <--- CORRECTED NUMBER
   street: "Von Leibnizstraat 23 a",
   postal: "3112 XN",
   city: "Schiedam",
   country: "NL",
 };
 
+// --- Local Business JSON-LD ---
 export function LocalBusinessJSON() {
   const data = {
     "@context": "https://schema.org",
@@ -34,11 +36,11 @@ export function LocalBusinessJSON() {
       "https://www.facebook.com/",
       "https://www.instagram.com/",
       "https://www.linkedin.com/",
-      "https://wa.me/31634099060",
+      `https://wa.me/${site.phone.replace(/[^0-9]/g, "")}`, // Ensures WhatsApp link uses the clean number
     ],
-    // ADDED opening hours specification
+    // Opening hours specification
     openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday"], opens: "08:00", closes: "18:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "08:00", closes: "18:00" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Saturday", opens: "09:00", closes: "16:00" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "00:00", closes: "00:00" } // closed
     ],
@@ -50,10 +52,13 @@ export function LocalBusinessJSON() {
   );
 }
 
+// --- Service JSON-LD (Updated to include FAQ) ---
 export function ServiceJSON({ slug }: { slug: string }) {
   const svc = services.find((s) => s.slug === slug);
   if (!svc) return null;
-  const data = {
+
+  // Initialize data with the base Service schema
+  const data: any = {
     "@context": "https://schema.org",
     "@type": "Service",
     name: svc.title,
@@ -61,7 +66,8 @@ export function ServiceJSON({ slug }: { slug: string }) {
     provider: { "@type": "LocalBusiness", name: site.name, telephone: site.phone, url: site.url },
     areaServed: "Schiedam en regio Rotterdam",
     url: `${site.url}/diensten/${svc.slug}`,
-    image: [`${svc.img}`],
+    // Ensure image is an array for best practice, using svc.img as primary
+    image: svc.images?.length ? svc.images : [`${svc.img}`], 
     offers: {
       "@type": "Offer",
       price: "0",
@@ -69,6 +75,20 @@ export function ServiceJSON({ slug }: { slug: string }) {
       description: "Vrijblijvende offerte",
     },
   };
+
+  // Check for FAQ and extend the schema if present
+  if (svc.faq && svc.faq.length) {
+    // 1. Add 'FAQPage' to the @type array
+    data["@type"] = ["Service", "FAQPage"]; 
+    
+    // 2. Add mainEntity containing the questions and answers
+    data.mainEntity = svc.faq.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    }));
+  }
+
   return (
     <Script id={`jsonld-service-${slug}`} type="application/ld+json" strategy="afterInteractive">
       {JSON.stringify(data)}

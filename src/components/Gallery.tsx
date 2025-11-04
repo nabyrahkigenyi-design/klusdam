@@ -5,6 +5,11 @@ import { PROJECT_CATEGORIES, projects, type Project, type Category, categoryCoun
 import { useI18n } from "@/lib/i18n";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
+// --- ADDED IMPORTS ---
+import BlurImage from "./BlurImage";
+import Breadcrumbs from "./Breadcrumbs";
+// ---------------------
+
 type Point = { clientX: number; clientY: number };
 function cx(...cls: (string | false | null | undefined)[]) {
   return cls.filter(Boolean).join(" ");
@@ -224,7 +229,11 @@ export default function Gallery() {
   return (
     <section className="py-16 md:py-20" data-reveal>
       <div className="mx-auto max-w-7xl px-4">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        
+        {/* BREADCRUMBS ADDED */}
+        <Breadcrumbs trail={[{ href: "/projecten", label: "Projecten" }]} />
+
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mt-4"> {/* Added mt-4 for spacing after breadcrumbs */}
           <h1 className="text-3xl md:text-4xl font-extrabold">Projecten</h1>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
@@ -242,7 +251,19 @@ export default function Gallery() {
         <div className="mt-8 grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filtered.map((item, idx) => (
             <button key={`${item.projectId}-${item.idxInAlbum}`} className="group relative rounded-lg overflow-hidden" onClick={() => openAt(idx)} aria-label={`Open ${item.title}`}>
-              <img src={item.src} className="w-full h-44 md:h-56 object-cover group-hover:scale-105 transition" alt={item.title} loading="lazy" />
+              
+              {/* IMAGE BLOCK REPLACED with BlurImage wrapper */}
+              <div className="relative w-full h-44 md:h-56">
+                <BlurImage
+                  src={item.src}
+                  alt={item.title}
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                  className="object-cover group-hover:scale-105 transition"
+                />
+              </div>
+              {/* END BlurImage wrapper */}
+              
               <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/50 to-transparent text-white text-xs">
                 <div className="font-semibold">{item.title}</div>
                 <div className="opacity-80">{item.category}</div>

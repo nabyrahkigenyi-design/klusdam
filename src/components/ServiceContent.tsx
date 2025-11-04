@@ -6,6 +6,12 @@ import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import type { Service } from "@/lib/services";
 
+// --- ADDED IMPORTS ---
+import Breadcrumbs from "./Breadcrumbs";
+import BlurImage from "./BlurImage";
+import FAQ from "./FAQ";
+// ---------------------
+
 type Point = { clientX: number; clientY: number };
 
 export default function ServiceContent({ svc }: { svc: Service }) {
@@ -29,9 +35,18 @@ export default function ServiceContent({ svc }: { svc: Service }) {
     resetTransform();
     setOpen(true);
   }
-  function next() { setIndex((v) => (v + 1) % svc.images.length); resetTransform(); }
-  function prev() { setIndex((v) => (v - 1 + svc.images.length) % svc.images.length); resetTransform(); }
-  function resetTransform() { setZoom(1); setOffset({ x: 0, y: 0 }); }
+  function next() {
+    setIndex((v) => (v + 1) % svc.images.length);
+    resetTransform();
+  }
+  function prev() {
+    setIndex((v) => (v - 1 + svc.images.length) % svc.images.length);
+    resetTransform();
+  }
+  function resetTransform() {
+    setZoom(1);
+    setOffset({ x: 0, y: 0 });
+  }
   function toggleZoom() {
     setZoom((z) => {
       const nz = z === 1 ? 2 : 1;
@@ -64,7 +79,9 @@ export default function ServiceContent({ svc }: { svc: Service }) {
     lastPos.current = { x: e.clientX, y: e.clientY };
     setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom }));
   }
-  function onMouseUp() { dragging.current = false; }
+  function onMouseUp() {
+    dragging.current = false;
+  }
 
   // touch pinch/drag
   function getDistance(t1: Point, t2: Point) {
@@ -125,7 +142,10 @@ export default function ServiceContent({ svc }: { svc: Service }) {
     lastPos.current = { x: t.clientX, y: t.clientY };
     setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom }));
   }
-  function onTouchEnd() { dragging.current = false; pinchStartDist.current = null; }
+  function onTouchEnd() {
+    dragging.current = false;
+    pinchStartDist.current = null;
+  }
   function onWheel(e: React.WheelEvent) {
     if (!open || zoom === 1) return;
     e.preventDefault();
@@ -139,6 +159,16 @@ export default function ServiceContent({ svc }: { svc: Service }) {
 
   return (
     <main>
+      {/* BREADCRUMBS ADDED HERE */}
+      <div className="mx-auto max-w-7xl px-4 pt-6">
+        <Breadcrumbs
+          trail={[
+            { href: "/diensten", label: "Diensten" },
+            { href: `/diensten/${svc.slug}`, label: svc.title },
+          ]}
+        />
+      </div>
+      
       {/* HERO */}
       <section className="relative" data-reveal>
         <div className="absolute inset-0 -z-10">
@@ -186,20 +216,8 @@ export default function ServiceContent({ svc }: { svc: Service }) {
             </ol>
           </div>
 
-          {/* OPTIONAL FAQ */}
-          {svc.faq && svc.faq.length > 0 && (
-            <div>
-              <h3 className="text-xl font-semibold">Veelgestelde vragen</h3>
-              <div className="mt-4 space-y-3">
-                {svc.faq.map((f, i) => (
-                  <details key={i} className="group border border-black/10 rounded-lg p-3">
-                    <summary className="cursor-pointer font-semibold">{f.q}</summary>
-                    <p className="mt-2 opacity-90">{f.a}</p>
-                  </details>
-                ))}
-              </div>
-            </div>
-          )}
+          {/* FAQ BLOCK: REPLACED with the FAQ component */}
+          {svc.faq && <FAQ items={svc.faq} />}
 
           {/* 6-IMAGE GALLERY */}
           <div>
@@ -212,13 +230,15 @@ export default function ServiceContent({ svc }: { svc: Service }) {
                   onClick={() => openAt(i)}
                   aria-label="Open afbeelding"
                 >
-                  {/* plain img keeps it simple; replace with next/image if you prefer */}
-                  <img
+                  {/* Image tag REPLACED with BlurImage component */}
+                  <BlurImage
                     src={src}
                     alt={`${svc.title} voorbeeld ${i + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition"
-                    loading="lazy"
+                    fill
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 33vw"
+                    className="object-cover group-hover:scale-105 transition"
                   />
+                  {/* End BlurImage */}
                 </button>
               ))}
             </div>
@@ -240,17 +260,25 @@ export default function ServiceContent({ svc }: { svc: Service }) {
         </aside>
       </section>
 
-      {/* LIGHTBOX */}
+      {/* LIGHTBOX (kept as-is) */}
       {open && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center">
           <button
             className="absolute inset-0 cursor-default"
             aria-label="Sluit lightbox"
-            onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
+            onClick={(e) => {
+              if (e.target === e.currentTarget) setOpen(false);
+            }}
           />
-          <button className="absolute top-4 right-4 text-white text-2xl" onClick={() => setOpen(false)}>✕</button>
-          <button className="absolute left-4 text-white text-3xl" onClick={prev}>‹</button>
-          <button className="absolute right-4 text-white text-3xl" onClick={next}>›</button>
+          <button className="absolute top-4 right-4 text-white text-2xl" onClick={() => setOpen(false)}>
+            ✕
+          </button>
+          <button className="absolute left-4 text-white text-3xl" onClick={prev}>
+            ‹
+          </button>
+          <button className="absolute right-4 text-white text-3xl" onClick={next}>
+            ›
+          </button>
 
           <div
             className="max-w-5xl max-h-[80vh] overflow-hidden rounded-lg touch-pan-y bg-black/60"
@@ -281,7 +309,7 @@ export default function ServiceContent({ svc }: { svc: Service }) {
               style={{
                 transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
                 transformOrigin: "center",
-                transition: (dragging.current || pinchStartDist.current) ? "none" : "transform 120ms ease",
+                transition: dragging.current || pinchStartDist.current ? "none" : "transform 120ms ease",
                 cursor: zoom > 1 ? "grab" : "zoom-in",
               }}
             />
