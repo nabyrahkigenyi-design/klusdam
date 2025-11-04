@@ -2,13 +2,9 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PROJECT_CATEGORIES, projects, type Project, type Category, categoryCounts } from "@/lib/projects";
-import { useI18n } from "@/lib/i18n"; // Import is already present, but confirming use
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-
-// --- ADDED IMPORTS ---
 import BlurImage from "./BlurImage";
 import Breadcrumbs from "./Breadcrumbs";
-// ---------------------
 
 type Point = { clientX: number; clientY: number };
 function cx(...cls: (string | false | null | undefined)[]) {
@@ -27,7 +23,6 @@ type ImageItem = {
 };
 
 export default function Gallery() {
-  const { t } = useI18n(); // Initialized i18n
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
@@ -92,6 +87,9 @@ export default function Gallery() {
   const pinchStartOffset = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const pinchCenter = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
+  // Viewport for contain sizing & pan clamp
+  const boxRef = useRef<HTMLDivElement>(null);
+
   function openAt(idx: number) {
     setIndex(idx);
     resetTransform();
@@ -132,7 +130,7 @@ export default function Gallery() {
     const dx = e.clientX - lastPos.current.x;
     const dy = e.clientY - lastPos.current.y;
     lastPos.current = { x: e.clientX, y: e.clientY };
-    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom }));
+    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom, el: boxRef.current }));
   }
   function onMouseUp() {
     dragging.current = false;
@@ -184,8 +182,8 @@ export default function Gallery() {
 
       const zoomRatio = newZoom / (pinchStartZoom.current || 1);
       const newOffset = {
-        x: clampNumber(pinchStartOffset.current.x * zoomRatio + dx, -300 * (newZoom - 1), 300 * (newZoom - 1)),
-        y: clampNumber(pinchStartOffset.current.y * zoomRatio + dy, -300 * (newZoom - 1), 300 * (newZoom - 1)),
+        x: clampNumber(pinchStartOffset.current.x * zoomRatio + dx, -limitX(newZoom), limitX(newZoom)),
+        y: clampNumber(pinchStartOffset.current.y * zoomRatio + dy, -limitY(newZoom), limitY(newZoom)),
       };
 
       setZoom(newZoom);
@@ -199,7 +197,7 @@ export default function Gallery() {
     const dx = t.clientX - lastPos.current.x;
     const dy = t.clientY - lastPos.current.y;
     lastPos.current = { x: t.clientX, y: t.clientY };
-    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom }));
+    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom, el: boxRef.current }));
   }
 
   function onTouchEnd() {
@@ -208,7 +206,7 @@ export default function Gallery() {
   }
 
   function onWheel(e: React.WheelEvent) {
-    if (!open || zoom === 1) return;
+    if (!open || zoom === 1) return; // allow page scroll when not zooming
     e.preventDefault();
     const delta = -e.deltaY * 0.0015;
     setZoom((z) => {
@@ -226,41 +224,50 @@ export default function Gallery() {
     });
   }
 
+  // clamp helpers based on viewport size
+  function limitX(z: number) {
+    const w = boxRef.current?.clientWidth ?? 1000;
+    return (w * (z - 1)) / 2;
+  }
+  function limitY(z: number) {
+    const h = boxRef.current?.clientHeight ?? 800;
+    return (h * (z - 1)) / 2;
+  }
+  function clamp(n: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, n));
+  }
+  function clampNumber(n: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, n));
+  }
+  function clampOffset({ x, y, z, el }: { x: number; y: number; z: number; el: HTMLDivElement | null }) {
+    const lx = (el?.clientWidth ?? 1000) * (z - 1) / 2;
+    const ly = (el?.clientHeight ?? 800) * (z - 1) / 2;
+    return { x: clamp(x, -lx, lx), y: clamp(y, -ly, ly) };
+  }
+
   return (
     <section className="py-16 md:py-20" data-reveal>
       <div className="mx-auto max-w-7xl px-4">
-        
-        {/* BREADCRUMBS ADDED */}
-        <Breadcrumbs trail={[{ href: "/projecten", label: t("breadcrumbs.projects") }]} />
+        <Breadcrumbs trail={[{ href: "/projecten", label: "Projecten" }]} />
 
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mt-4"> {/* Added mt-4 for spacing after breadcrumbs */}
-          {/* Section title translated */}
-          <h1 className="text-3xl md:text-4xl font-extrabold">{t("breadcrumbs.projects")}</h1>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mt-2">
+          <h1 className="text-3xl md:text-4xl font-extrabold">Projecten</h1>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
             <div className="flex flex-wrap gap-2">
-              {/* Filter pill labels are dynamic, no translation needed here */}
-              <FilterPill label={t("gallery.all")} count={allImageItems.length} active={category === ALL} onClick={() => setCategory(ALL)} />
+              <FilterPill label="Alle" count={allImageItems.length} active={category === ALL} onClick={() => setCategory(ALL)} />
               {PROJECT_CATEGORIES.map((c) => (
                 <FilterPill key={c} label={c} count={counts[c] ?? 0} active={category === c} onClick={() => setCategory(c)} />
               ))}
             </div>
 
-            {/* Search placeholder translated */}
-            <input 
-              value={query} 
-              onChange={(e) => setQuery(e.target.value)} 
-              placeholder={t("gallery.searchPlaceholder")} 
-              className="w-full sm:w-80 rounded-lg border border-black/10 px-3 py-2" 
-            />
+            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Zoeken…" className="w-full sm:w-80 rounded-lg border border-black/10 px-3 py-2" />
           </div>
         </div>
 
         <div className="mt-8 grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filtered.map((item, idx) => (
             <button key={`${item.projectId}-${item.idxInAlbum}`} className="group relative rounded-lg overflow-hidden" onClick={() => openAt(idx)} aria-label={`Open ${item.title}`}>
-              
-              {/* IMAGE BLOCK REPLACED with BlurImage wrapper */}
               <div className="relative w-full h-44 md:h-56">
                 <BlurImage
                   src={item.src}
@@ -270,8 +277,6 @@ export default function Gallery() {
                   className="object-cover group-hover:scale-105 transition"
                 />
               </div>
-              {/* END BlurImage wrapper */}
-              
               <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-black/50 to-transparent text-white text-xs">
                 <div className="font-semibold">{item.title}</div>
                 <div className="opacity-80">{item.category}</div>
@@ -288,8 +293,32 @@ export default function Gallery() {
           <button className="absolute left-4 text-white text-3xl" onClick={prev}>‹</button>
           <button className="absolute right-4 text-white text-3xl" onClick={next}>›</button>
 
-          <div className="max-w-5xl max-h-[80vh] overflow-hidden rounded-lg touch-pan-y" onWheel={onWheel} onDoubleClick={toggleZoom} onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
-            <img src={filtered[index].src} className="select-none" alt={filtered[index].title} draggable={false} style={{ transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`, transformOrigin: "center", transition: (dragging.current || pinchStartDist.current) ? "none" : "transform 120ms ease", cursor: zoom > 1 ? "grab" : "zoom-in" }} />
+          {/* Viewport: fixed size; image is object-contain so full image is visible at zoom=1 */}
+          <div
+            ref={boxRef}
+            className="w-[92vw] max-w-5xl h-[80vh] overflow-hidden rounded-lg touch-pan-y bg-black/60 flex items-center justify-center"
+            onWheel={onWheel}
+            onDoubleClick={toggleZoom}
+            onMouseDown={onMouseDown}
+            onMouseMove={onMouseMove}
+            onMouseUp={onMouseUp}
+            onMouseLeave={onMouseUp}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
+          >
+            <img
+              src={filtered[index].src}
+              alt={filtered[index].title}
+              className="select-none w-full h-full object-contain"
+              draggable={false}
+              style={{
+                transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
+                transformOrigin: "center",
+                transition: (dragging.current || pinchStartDist.current) ? "none" : "transform 120ms ease",
+                cursor: zoom > 1 ? "grab" : "zoom-in",
+              }}
+            />
           </div>
         </div>
       )}
@@ -298,20 +327,10 @@ export default function Gallery() {
 }
 
 function FilterPill({ label, count, active, onClick }: { label: string; count?: number; active?: boolean; onClick: () => void; }) {
-  const { t } = useI18n(); // Use i18n for "Alle" (All) label
-
-  // Dynamic translation for "Alle" pill label
-  const pillLabel = label === "Alle" ? t("gallery.all") : label;
-
   return (
     <button onClick={onClick} className={cx("px-3 py-1.5 rounded-full text-sm border inline-flex items-center gap-2", active ? "bg-bronze text-charcoal border-bronze" : "bg-white border-black/10 hover:bg-cream")}>
-      <span>{pillLabel}</span>
+      <span>{label}</span>
       {typeof count === "number" && <span className={cx("text-[11px] px-1.5 py-[1px] rounded-full", active ? "bg-charcoal text-bronze" : "bg-black/10 text-charcoal/80")}>{count}</span>}
     </button>
   );
 }
-
-// helpers
-function clamp(n: number, min: number, max: number) { return Math.max(min, Math.min(max, n)); }
-function clampNumber(n: number, min: number, max: number) { return Math.max(min, Math.min(max, n)); }
-function clampOffset({ x, y, z }: { x: number; y: number; z: number }) { const limit = 300 * (z - 1); return { x: clamp(x, -limit, limit), y: clamp(y, -limit, limit) }; }

@@ -5,12 +5,7 @@ import ContactForm from "./ContactForm";
 import Link from "next/link";
 import { useRef, useState, useEffect } from "react";
 import type { Service } from "@/lib/services";
-
-// --- ADDED IMPORTS ---
 import Breadcrumbs from "./Breadcrumbs";
-import BlurImage from "./BlurImage";
-import FAQ from "./FAQ";
-// ---------------------
 
 type Point = { clientX: number; clientY: number };
 
@@ -30,23 +25,17 @@ export default function ServiceContent({ svc }: { svc: Service }) {
   const pinchStartOffset = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const pinchCenter = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
+  // viewport for contain + clamp
+  const boxRef = useRef<HTMLDivElement>(null);
+
   function openAt(i: number) {
     setIndex(i);
     resetTransform();
     setOpen(true);
   }
-  function next() {
-    setIndex((v) => (v + 1) % svc.images.length);
-    resetTransform();
-  }
-  function prev() {
-    setIndex((v) => (v - 1 + svc.images.length) % svc.images.length);
-    resetTransform();
-  }
-  function resetTransform() {
-    setZoom(1);
-    setOffset({ x: 0, y: 0 });
-  }
+  function next() { setIndex((v) => (v + 1) % svc.images.length); resetTransform(); }
+  function prev() { setIndex((v) => (v - 1 + svc.images.length) % svc.images.length); resetTransform(); }
+  function resetTransform() { setZoom(1); setOffset({ x: 0, y: 0 }); }
   function toggleZoom() {
     setZoom((z) => {
       const nz = z === 1 ? 2 : 1;
@@ -77,11 +66,9 @@ export default function ServiceContent({ svc }: { svc: Service }) {
     const dx = e.clientX - lastPos.current.x;
     const dy = e.clientY - lastPos.current.y;
     lastPos.current = { x: e.clientX, y: e.clientY };
-    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom }));
+    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom, el: boxRef.current }));
   }
-  function onMouseUp() {
-    dragging.current = false;
-  }
+  function onMouseUp() { dragging.current = false; }
 
   // touch pinch/drag
   function getDistance(t1: Point, t2: Point) {
@@ -127,8 +114,8 @@ export default function ServiceContent({ svc }: { svc: Service }) {
 
       const zoomRatio = newZoom / (pinchStartZoom.current || 1);
       const newOffset = {
-        x: clampNumber(pinchStartOffset.current.x * zoomRatio + dx, -300 * (newZoom - 1), 300 * (newZoom - 1)),
-        y: clampNumber(pinchStartOffset.current.y * zoomRatio + dy, -300 * (newZoom - 1), 300 * (newZoom - 1)),
+        x: clampNumber(pinchStartOffset.current.x * zoomRatio + dx, -limitX(newZoom), limitX(newZoom)),
+        y: clampNumber(pinchStartOffset.current.y * zoomRatio + dy, -limitY(newZoom), limitY(newZoom)),
       };
       setZoom(newZoom);
       setOffset(newOffset);
@@ -140,12 +127,9 @@ export default function ServiceContent({ svc }: { svc: Service }) {
     const dx = t.clientX - lastPos.current.x;
     const dy = t.clientY - lastPos.current.y;
     lastPos.current = { x: t.clientX, y: t.clientY };
-    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom }));
+    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom, el: boxRef.current }));
   }
-  function onTouchEnd() {
-    dragging.current = false;
-    pinchStartDist.current = null;
-  }
+  function onTouchEnd() { dragging.current = false; pinchStartDist.current = null; }
   function onWheel(e: React.WheelEvent) {
     if (!open || zoom === 1) return;
     e.preventDefault();
@@ -157,18 +141,29 @@ export default function ServiceContent({ svc }: { svc: Service }) {
     });
   }
 
+  // clamp helpers based on viewport size
+  function limitX(z: number) {
+    const w = boxRef.current?.clientWidth ?? 1000;
+    return (w * (z - 1)) / 2;
+    }
+  function limitY(z: number) {
+    const h = boxRef.current?.clientHeight ?? 800;
+    return (h * (z - 1)) / 2;
+  }
+  function clamp(n: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, n));
+  }
+  function clampNumber(n: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, n));
+  }
+  function clampOffset({ x, y, z, el }: { x: number; y: number; z: number; el: HTMLDivElement | null }) {
+    const lx = (el?.clientWidth ?? 1000) * (z - 1) / 2;
+    const ly = (el?.clientHeight ?? 800) * (z - 1) / 2;
+    return { x: clamp(x, -lx, lx), y: clamp(y, -ly, ly) };
+  }
+
   return (
     <main>
-      {/* BREADCRUMBS ADDED HERE */}
-      <div className="mx-auto max-w-7xl px-4 pt-6">
-        <Breadcrumbs
-          trail={[
-            { href: "/diensten", label: "Diensten" },
-            { href: `/diensten/${svc.slug}`, label: svc.title },
-          ]}
-        />
-      </div>
-      
       {/* HERO */}
       <section className="relative" data-reveal>
         <div className="absolute inset-0 -z-10">
@@ -190,6 +185,16 @@ export default function ServiceContent({ svc }: { svc: Service }) {
           </div>
         </div>
       </section>
+
+      {/* BREADCRUMBS */}
+      <div className="mx-auto max-w-7xl px-4 pt-6">
+        <Breadcrumbs
+          trail={[
+            { href: "/diensten", label: "Diensten" },
+            { href: `/diensten/${svc.slug}`, label: svc.title },
+          ]}
+        />
+      </div>
 
       {/* BODY + OFFERTE */}
       <section className="mx-auto max-w-7xl px-4 py-12 grid md:grid-cols-3 gap-8" data-reveal>
@@ -216,9 +221,6 @@ export default function ServiceContent({ svc }: { svc: Service }) {
             </ol>
           </div>
 
-          {/* FAQ BLOCK: REPLACED with the FAQ component */}
-          {svc.faq && <FAQ items={svc.faq} />}
-
           {/* 6-IMAGE GALLERY */}
           <div>
             <h3 className="text-xl font-semibold">Voorbeelden van ons werk</h3>
@@ -230,15 +232,12 @@ export default function ServiceContent({ svc }: { svc: Service }) {
                   onClick={() => openAt(i)}
                   aria-label="Open afbeelding"
                 >
-                  {/* Image tag REPLACED with BlurImage component */}
-                  <BlurImage
+                  <img
                     src={src}
                     alt={`${svc.title} voorbeeld ${i + 1}`}
-                    fill
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition"
+                    className="w-full h-full object-cover group-hover:scale-105 transition"
+                    loading="lazy"
                   />
-                  {/* End BlurImage */}
                 </button>
               ))}
             </div>
@@ -260,38 +259,23 @@ export default function ServiceContent({ svc }: { svc: Service }) {
         </aside>
       </section>
 
-      {/* LIGHTBOX (kept as-is) */}
+      {/* LIGHTBOX */}
       {open && (
         <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center">
           <button
             className="absolute inset-0 cursor-default"
             aria-label="Sluit lightbox"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) setOpen(false);
-            }}
+            onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}
           />
-          <button className="absolute top-4 right-4 text-white text-2xl" onClick={() => setOpen(false)}>
-            ✕
-          </button>
-          <button className="absolute left-4 text-white text-3xl" onClick={prev}>
-            ‹
-          </button>
-          <button className="absolute right-4 text-white text-3xl" onClick={next}>
-            ›
-          </button>
+          <button className="absolute top-4 right-4 text-white text-2xl" onClick={() => setOpen(false)}>✕</button>
+          <button className="absolute left-4 text-white text-3xl" onClick={prev}>‹</button>
+          <button className="absolute right-4 text-white text-3xl" onClick={next}>›</button>
 
+          {/* Viewport: fixed size; image is object-contain so full image is visible at zoom=1 */}
           <div
-            className="max-w-5xl max-h-[80vh] overflow-hidden rounded-lg touch-pan-y bg-black/60"
-            onWheel={(e) => {
-              if (!open || zoom === 1) return;
-              e.preventDefault();
-              const delta = -e.deltaY * 0.0015;
-              setZoom((z) => {
-                const nz = clamp(z + delta, 1, 3);
-                if (nz === 1) setOffset({ x: 0, y: 0 });
-                return nz;
-              });
-            }}
+            ref={boxRef}
+            className="w-[92vw] max-w-5xl h-[80vh] overflow-hidden rounded-lg touch-pan-y bg-black/60 flex items-center justify-center"
+            onWheel={onWheel}
             onDoubleClick={toggleZoom}
             onMouseDown={onMouseDown}
             onMouseMove={onMouseMove}
@@ -304,12 +288,12 @@ export default function ServiceContent({ svc }: { svc: Service }) {
             <img
               src={svc.images[index]}
               alt={`${svc.title} voorbeeld ${index + 1}`}
-              className="select-none"
+              className="select-none w-full h-full object-contain"
               draggable={false}
               style={{
                 transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
                 transformOrigin: "center",
-                transition: dragging.current || pinchStartDist.current ? "none" : "transform 120ms ease",
+                transition: (dragging.current || pinchStartDist.current) ? "none" : "transform 120ms ease",
                 cursor: zoom > 1 ? "grab" : "zoom-in",
               }}
             />
@@ -318,16 +302,4 @@ export default function ServiceContent({ svc }: { svc: Service }) {
       )}
     </main>
   );
-}
-
-// helpers
-function clamp(n: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, n));
-}
-function clampNumber(n: number, min: number, max: number) {
-  return Math.max(min, Math.min(max, n));
-}
-function clampOffset({ x, y, z }: { x: number; y: number; z: number }) {
-  const limit = 300 * (z - 1);
-  return { x: clamp(x, -limit, limit), y: clamp(y, -limit, limit) };
 }
