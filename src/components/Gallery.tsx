@@ -1,16 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { PROJECT_CATEGORIES, projects, type Project, type Category, categoryCounts } from "@/lib/projects";
+import { PROJECT_CATEGORIES, projects, type Category, categoryCounts } from "@/lib/projects";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import BlurImage from "./BlurImage";
 import Breadcrumbs from "./Breadcrumbs";
 
 type Point = { clientX: number; clientY: number };
-function cx(...cls: (string | false | null | undefined)[]) {
-  return cls.filter(Boolean).join(" ");
-}
-
 const ALL = "Alle" as const;
 type CatFilter = typeof ALL | Category;
 
@@ -22,19 +18,21 @@ type ImageItem = {
   idxInAlbum: number;
 };
 
+function cx(...cls: (string | false | null | undefined)[]) {
+  return cls.filter(Boolean).join(" ");
+}
+
 export default function Gallery() {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
 
-  // Read initial cat from URL (?cat=Vloeren)
   const catFromUrl = decodeURIComponent(params.get("cat") || "") as Category;
   const initialCat: CatFilter = PROJECT_CATEGORIES.includes(catFromUrl) ? catFromUrl : ALL;
 
   const [category, setCategory] = useState<CatFilter>(initialCat);
   const [query, setQuery] = useState("");
 
-  // Sync URL when category changes
   useEffect(() => {
     const next = new URLSearchParams(params.toString());
     if (category === ALL) next.delete("cat");
@@ -43,24 +41,16 @@ export default function Gallery() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
 
-  // Build flattened image items from projects
   const allImageItems: ImageItem[] = useMemo(() => {
     const items: ImageItem[] = [];
     for (const p of projects) {
       p.images.forEach((src, idx) =>
-        items.push({
-          projectId: p.id,
-          title: p.title,
-          category: p.category,
-          src,
-          idxInAlbum: idx,
-        })
+        items.push({ projectId: p.id, title: p.title, category: p.category, src, idxInAlbum: idx })
       );
     }
     return items;
   }, []);
 
-  // Apply filters
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     return allImageItems.filter((it) => {
@@ -70,9 +60,9 @@ export default function Gallery() {
     });
   }, [allImageItems, category, query]);
 
-  const counts = categoryCounts(); // counts images per category
+  const counts = categoryCounts();
 
-  // Lightbox state: open index points at filtered[] index
+  // Lightbox state
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [zoom, setZoom] = useState(1);
@@ -80,20 +70,27 @@ export default function Gallery() {
   const dragging = useRef(false);
   const lastPos = useRef({ x: 0, y: 0 });
   const lastTap = useRef<number>(0);
+  const [showUI, setShowUI] = useState(true);
 
-  // Pinch
+  // pinch
   const pinchStartDist = useRef<number | null>(null);
   const pinchStartZoom = useRef<number>(1);
   const pinchStartOffset = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
   const pinchCenter = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Viewport for contain sizing & pan clamp
+  // swipe (when zoom=1)
+  const swipeStart = useRef<{ x: number; y: number; t: number } | null>(null);
+
+  // viewport ref (fullscreen)
   const boxRef = useRef<HTMLDivElement>(null);
 
   function openAt(idx: number) {
     setIndex(idx);
     resetTransform();
     setOpen(true);
+  }
+  function close() {
+    setOpen(false);
   }
   function next() {
     setIndex((i) => (i + 1) % filtered.length);
@@ -108,16 +105,50 @@ export default function Gallery() {
     setOffset({ x: 0, y: 0 });
   }
 
+  // lock body scroll when open
+  useEffect(() => {
+    if (open) {
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [open]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (!open) return;
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [open, filtered.length]);
+  }, [open]);
+
+  // Helpers
+  function clamp(n: number, min: number, max: number) {
+    return Math.max(min, Math.min(max, n));
+  }
+  function limitX(z: number) {
+    const w = boxRef.current?.clientWidth ?? 1000;
+    return (w * (z - 1)) / 2;
+  }
+  function limitY(z: number) {
+    const h = boxRef.current?.clientHeight ?? 800;
+    return (h * (z - 1)) / 2;
+  }
+  function clampOffset(x: number, y: number, z: number) {
+    return { x: clamp(x, -limitX(z), limitX(z)), y: clamp(y, -limitY(z), limitY(z)) };
+  }
+  function toggleZoom() {
+    setZoom((z) => {
+      const nz = z === 1 ? 2 : 1;
+      if (nz === 1) setOffset({ x: 0, y: 0 });
+      return nz;
+    });
+  }
 
   // Mouse pan
   function onMouseDown(e: React.MouseEvent) {
@@ -130,13 +161,22 @@ export default function Gallery() {
     const dx = e.clientX - lastPos.current.x;
     const dy = e.clientY - lastPos.current.y;
     lastPos.current = { x: e.clientX, y: e.clientY };
-    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom, el: boxRef.current }));
+    setOffset((o) => clampOffset(o.x + dx, o.y + dy, zoom));
   }
   function onMouseUp() {
     dragging.current = false;
   }
+  function onWheel(e: React.WheelEvent) {
+    if (!open) return;
+    const delta = -e.deltaY * 0.0015;
+    setZoom((z) => {
+      const nz = clamp(z + delta, 1, 4);
+      if (nz === 1) setOffset({ x: 0, y: 0 });
+      return nz;
+    });
+  }
 
-  // Touch helpers
+  // Touch
   function getDistance(t1: Point, t2: Point) {
     const dx = t2.clientX - t1.clientX;
     const dy = t2.clientY - t1.clientY;
@@ -145,7 +185,6 @@ export default function Gallery() {
   function getCenter(t1: Point, t2: Point) {
     return { x: (t1.clientX + t2.clientX) / 2, y: (t1.clientY + t2.clientY) / 2 };
   }
-
   function onTouchStart(e: React.TouchEvent) {
     if (e.touches.length === 2) {
       const [t1, t2] = [e.touches[0], e.touches[1]];
@@ -156,93 +195,71 @@ export default function Gallery() {
       return;
     }
     if (e.touches.length === 1) {
+      swipeStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY, t: Date.now() };
+
       const now = Date.now();
-      if (now - lastTap.current < 300) {
+      if (now - lastTap.current < 280) {
         toggleZoom();
-      } else if (zoom > 1) {
-        const t = e.touches[0];
-        dragging.current = true;
-        lastPos.current = { x: t.clientX, y: t.clientY };
       }
       lastTap.current = now;
+
+      if (zoom > 1) {
+        dragging.current = true;
+        lastPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+      }
     }
   }
-
   function onTouchMove(e: React.TouchEvent) {
+    // pinch
     if (e.touches.length === 2 && pinchStartDist.current) {
       e.preventDefault();
       const [t1, t2] = [e.touches[0], e.touches[1]];
       const dist = getDistance(t1, t2);
       const scaleDelta = dist / pinchStartDist.current;
-      const newZoom = clamp(pinchStartZoom.current * scaleDelta, 1, 3);
+      const newZoom = clamp(pinchStartZoom.current * scaleDelta, 1, 4);
 
       const c = getCenter(t1, t2);
       const dx = c.x - pinchCenter.current.x;
       const dy = c.y - pinchCenter.current.y;
 
-      const zoomRatio = newZoom / (pinchStartZoom.current || 1);
-      const newOffset = {
-        x: clampNumber(pinchStartOffset.current.x * zoomRatio + dx, -limitX(newZoom), limitX(newZoom)),
-        y: clampNumber(pinchStartOffset.current.y * zoomRatio + dy, -limitY(newZoom), limitY(newZoom)),
-      };
+      const ratio = newZoom / (pinchStartZoom.current || 1);
+      const nx = pinchStartOffset.current.x * ratio + dx;
+      const ny = pinchStartOffset.current.y * ratio + dy;
 
+      const clamped = clampOffset(nx, ny, newZoom);
       setZoom(newZoom);
-      setOffset(newOffset);
+      setOffset(clamped);
       return;
     }
 
+    // drag when zoomed
     if (!dragging.current || e.touches.length !== 1 || zoom === 1) return;
     e.preventDefault();
     const t = e.touches[0];
     const dx = t.clientX - lastPos.current.x;
     const dy = t.clientY - lastPos.current.y;
     lastPos.current = { x: t.clientX, y: t.clientY };
-    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy, z: zoom, el: boxRef.current }));
+    setOffset((o) => clampOffset(o.x + dx, o.y + dy, zoom));
   }
-
-  function onTouchEnd() {
+  function onTouchEnd(e: React.TouchEvent) {
     dragging.current = false;
     pinchStartDist.current = null;
-  }
 
-  function onWheel(e: React.WheelEvent) {
-    if (!open || zoom === 1) return; // allow page scroll when not zooming
-    e.preventDefault();
-    const delta = -e.deltaY * 0.0015;
-    setZoom((z) => {
-      const nz = clamp(z + delta, 1, 3);
-      if (nz === 1) setOffset({ x: 0, y: 0 });
-      return nz;
-    });
-  }
+    // swipe navigation only when zoom=1
+    if (zoom === 1 && swipeStart.current) {
+      const start = swipeStart.current;
+      const endT = Date.now() - start.t;
+      const endX = (e.changedTouches && e.changedTouches[0]?.clientX) || start.x;
+      const endY = (e.changedTouches && e.changedTouches[0]?.clientY) || start.y;
+      const dx = endX - start.x;
+      const dy = endY - start.y;
 
-  function toggleZoom() {
-    setZoom((z) => {
-      const nz = z === 1 ? 2 : 1;
-      if (nz === 1) setOffset({ x: 0, y: 0 });
-      return nz;
-    });
-  }
-
-  // clamp helpers based on viewport size
-  function limitX(z: number) {
-    const w = boxRef.current?.clientWidth ?? 1000;
-    return (w * (z - 1)) / 2;
-  }
-  function limitY(z: number) {
-    const h = boxRef.current?.clientHeight ?? 800;
-    return (h * (z - 1)) / 2;
-  }
-  function clamp(n: number, min: number, max: number) {
-    return Math.max(min, Math.min(max, n));
-  }
-  function clampNumber(n: number, min: number, max: number) {
-    return Math.max(min, Math.min(max, n));
-  }
-  function clampOffset({ x, y, z, el }: { x: number; y: number; z: number; el: HTMLDivElement | null }) {
-    const lx = (el?.clientWidth ?? 1000) * (z - 1) / 2;
-    const ly = (el?.clientHeight ?? 800) * (z - 1) / 2;
-    return { x: clamp(x, -lx, lx), y: clamp(y, -ly, ly) };
+      if (endT < 500 && Math.abs(dx) > 60 && Math.abs(dy) < 80) {
+        if (dx < 0) next();
+        else prev();
+      }
+    }
+    swipeStart.current = null;
   }
 
   return (
@@ -261,13 +278,23 @@ export default function Gallery() {
               ))}
             </div>
 
-            <input value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Zoeken…" className="w-full sm:w-80 rounded-lg border border-black/10 px-3 py-2" />
+            <input
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Zoeken…"
+              className="w-full sm:w-80 rounded-lg border border-black/10 px-3 py-2"
+            />
           </div>
         </div>
 
         <div className="mt-8 grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {filtered.map((item, idx) => (
-            <button key={`${item.projectId}-${item.idxInAlbum}`} className="group relative rounded-lg overflow-hidden" onClick={() => openAt(idx)} aria-label={`Open ${item.title}`}>
+            <button
+              key={`${item.projectId}-${item.idxInAlbum}`}
+              className="group relative rounded-lg overflow-hidden"
+              onClick={() => openAt(idx)}
+              aria-label={`Open ${item.title}`}
+            >
               <div className="relative w-full h-44 md:h-56">
                 <BlurImage
                   src={item.src}
@@ -287,25 +314,47 @@ export default function Gallery() {
       </div>
 
       {open && filtered.length > 0 && (
-        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center">
-          <button className="absolute inset-0 cursor-default" aria-label="Sluit lightbox" onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }} />
-          <button className="absolute top-4 right-4 text-white text-2xl" onClick={() => setOpen(false)}>✕</button>
-          <button className="absolute left-4 text-white text-3xl" onClick={prev}>‹</button>
-          <button className="absolute right-4 text-white text-3xl" onClick={next}>›</button>
+        <div
+          className="fixed inset-0 z-50 bg-black"
+          onWheel={onWheel}
+          onDoubleClick={toggleZoom}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+        >
+          {/* top bar */}
+          <div
+  className={cx(
+    "absolute left-0 right-0 top-0 z-20 p-3 flex items-center justify-between text-white transition-opacity",
+    showUI ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+  )}
+  onClick={(e) => e.stopPropagation()}
+>
+  <button type="button" className="text-xl px-3 py-1.5 rounded bg-white/10 hover:bg-white/20" onClick={close}>✕</button>
+  <div className="text-sm bg-white/10 px-3 py-1 rounded">
+    {index + 1} / {filtered.length}
+  </div>
+  <div className="flex gap-2">
+    <button type="button" className="text-sm px-3 py-1.5 rounded bg-white/10 hover:bg-white/20" onClick={prev}>‹ Prev</button>
+    <button type="button" className="text-sm px-3 py-1.5 rounded bg-white/10 hover:bg-white/20" onClick={next}>Next ›</button>
+    <button
+      type="button"
+      className="text-sm px-3 py-1.5 rounded bg-white/10 hover:bg-white/20"
+      onClick={() => { setZoom(1); setOffset({ x: 0, y: 0 }); }}
+    >
+      Reset
+    </button>
+  </div>
+</div>
 
-          {/* Viewport: fixed size; image is object-contain so full image is visible at zoom=1 */}
+          {/* viewport + image */}
           <div
             ref={boxRef}
-            className="w-[92vw] max-w-5xl h-[80vh] overflow-hidden rounded-lg touch-pan-y bg-black/60 flex items-center justify-center"
-            onWheel={onWheel}
-            onDoubleClick={toggleZoom}
-            onMouseDown={onMouseDown}
-            onMouseMove={onMouseMove}
-            onMouseUp={onMouseUp}
-            onMouseLeave={onMouseUp}
-            onTouchStart={onTouchStart}
-            onTouchMove={onTouchMove}
-            onTouchEnd={onTouchEnd}
+            className="absolute inset-0 flex items-center justify-center"
+            onClick={() => setShowUI((v) => !v)} // toggle chrome
           >
             <img
               src={filtered[index].src}
@@ -315,22 +364,41 @@ export default function Gallery() {
               style={{
                 transform: `translate(${offset.x}px, ${offset.y}px) scale(${zoom})`,
                 transformOrigin: "center",
-                transition: (dragging.current || pinchStartDist.current) ? "none" : "transform 120ms ease",
+                transition: dragging.current || pinchStartDist.current ? "none" : "transform 120ms ease",
                 cursor: zoom > 1 ? "grab" : "zoom-in",
               }}
             />
           </div>
+
+          {/* bottom gradient hint */}
+          <div className={cx("pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent transition-opacity",
+            showUI ? "opacity-100" : "opacity-0"
+          )} />
         </div>
       )}
     </section>
   );
 }
 
-function FilterPill({ label, count, active, onClick }: { label: string; count?: number; active?: boolean; onClick: () => void; }) {
+function FilterPill({
+  label, count, active, onClick,
+}: { label: string; count?: number; active?: boolean; onClick: () => void }) {
   return (
-    <button onClick={onClick} className={cx("px-3 py-1.5 rounded-full text-sm border inline-flex items-center gap-2", active ? "bg-bronze text-charcoal border-bronze" : "bg-white border-black/10 hover:bg-cream")}>
+    <button
+      onClick={onClick}
+      className={cx(
+        "px-3 py-1.5 rounded-full text-sm border inline-flex items-center gap-2",
+        active ? "bg-bronze text-charcoal border-bronze" : "bg-white border-black/10 hover:bg-cream"
+      )}
+    >
       <span>{label}</span>
-      {typeof count === "number" && <span className={cx("text-[11px] px-1.5 py-[1px] rounded-full", active ? "bg-charcoal text-bronze" : "bg-black/10 text-charcoal/80")}>{count}</span>}
+      {typeof count === "number" && (
+        <span className={cx("text-[11px] px-1.5 py-[1px] rounded-full",
+          active ? "bg-charcoal text-bronze" : "bg-black/10 text-charcoal/80"
+        )}>
+          {count}
+        </span>
+      )}
     </button>
   );
 }
