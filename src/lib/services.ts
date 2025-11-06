@@ -16,7 +16,7 @@ export const services: Service[] = [
     title: "Laminaat laten leggen",
     excerpt:
       "Strak gelegd laminaat met perfecte plinten en nette afwerking. Snel, stofarm en volgens afspraak.",
-    img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/jPvG1bZ1/laminaat-1.jpg",
     bullets: [
       "Strakke legpatronen (recht, visgraat, Hongaarse punt).",
       "Vakkundig afgewerkte plinten, dilataties en afkitten.",
@@ -24,12 +24,12 @@ export const services: Service[] = [
       "Scherpe planning en heldere communicatie.",
     ],
     images: [
-      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
+        "https://i.ibb.co/jPvG1bZ1/laminaat-1.jpg",
+        "https://i.ibb.co/fV9nfn5r/laminaat-2.jpg",
+        "https://i.ibb.co/LdZD4SzL/laminaat-4.jpg",
+        "https://i.ibb.co/MkGqPZ5t/laminaat-5.jpg",
+        "https://i.ibb.co/4gJBpwsN/laminaat-unsplash.jpg",
+        "https://i.ibb.co/v4XRLXLX/laminnat-3.jpg",
     ],
     intro:
       "We adviseren over ondervloeren, patronen en plintprofielen. Ons team werkt netjes met beschermde looproutes en dagelijks opgeruimde werkplek.",
@@ -96,7 +96,7 @@ export const services: Service[] = [
     title: "Schilderwerk",
     excerpt:
       "Strak en duurzaam schilderwerk binnen en buiten. Voorbereiding, reparatie en professionele afwerking.",
-    img: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/YTWmppVT/hoofd-Schilderwerk.jpg",
     bullets: [
       "Voorbewerking: ontvetten, schuren, plamuren.",
       "A-merk verven, juiste laagopbouw.",
@@ -104,12 +104,12 @@ export const services: Service[] = [
       "Heldere afspraken en nazorg.",
     ],
     images: [
-      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1600&auto=format&fit=crop",
+      "https://i.ibb.co/Swksd1jk/image.jpg",
+      "https://i.ibb.co/Zpcm4Mv7/3.jpg",
+      "https://i.ibb.co/hFfCFZmb/4.jpg",
+      "https://i.ibb.co/HpFfB2Fc/5.jpg",
+      "https://i.ibb.co/6RThDd8f/Buiten-schilderen-voor-en-na-boeidelen-opknappen.jpg",
+      "https://i.ibb.co/nssJw0TH/verticale-of-horizontaleof-schuine-strepen-schilderen.jpg",
     ],
   },
 

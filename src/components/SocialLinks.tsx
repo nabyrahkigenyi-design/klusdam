@@ -8,7 +8,7 @@ type Props = {
 // Update these URLs to your real accounts.
 // WhatsApp uses the international format without leading 0.
 const LINKS = {
-  whatsapp: "https://wa.me/31687727705?text=Hallo%20Klusdam%2C%20ik%20heb%20een%20vraag%20over%20een%20offerte.",
+  whatsapp: "https://wa.me/31634099060?text=Hallo%20Klusdam%2C%20ik%20heb%20een%20vraag%20over%20een%20offerte.",
   facebook: "https://www.facebook.com/klusdam",   // <— vervang
   instagram: "https://www.instagram.com/klusdam", // <— vervang
   linkedin: "https://www.linkedin.com/company/klusdam", // <— vervang
