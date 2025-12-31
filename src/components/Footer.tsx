@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 text-xs px-4 py-4 text-center opacity-80">
-        © {year} Klusdam. Alle rechten voorbehouden.
+        © {year} Klusdam. Alle rechten voorbehouden. IFLAMM DESIGNS
       </div>
     </footer>
   );

@@ -20,7 +20,7 @@ export default function OverTeaser() {
         </div>
         <div className="rounded-xl overflow-hidden shadow" data-reveal>
           <img
-            src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1600&auto=format&fit=crop"
+            src="https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg"
             alt="Team aan het werk"
             className="w-full h-full object-cover"
           />

@@ -10,7 +10,7 @@ type Review = {
 };
 
 const BG =
-  "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=2000&auto=format&fit=crop"; // replace with your ImgBB later
+  "https://i.ibb.co/ycJLF4mp/092091021.jpg"; // replace with your ImgBB later
 
 const reviews: Review[] = [
   {

@@ -40,7 +40,7 @@ export const services: Service[] = [
     title: "Badkamer renovatie",
     excerpt:
       "Compleet vernieuwde badkamer: tegelwerk, sanitair, leidingwerk en afwerking. Eén aanspreekpunt, duidelijke planning.",
-    img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/8gsnQCkL/hoofd-Tegelwerk.jpg",
     bullets: [
       "Vlak en waterdicht tegelwerk (wanden en vloeren).",
       "Inloopdouche, nisjes, maatwerk betimmering.",
@@ -48,12 +48,18 @@ export const services: Service[] = [
       "Heldere planning en garantie op de oplevering.",
     ],
     images: [
-      "https://images.unsplash.com/photo-1549187774-b4e9f044ff5d?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1464965911861-746a04b4bca5?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1564540574749-5c9a0e4d3c49?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542317854-37f2b6a8fb15?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600573472550-8090b5e86b31?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop",
+      "https://i.ibb.co/qM0Zr8hy/2.jpg",
+"https://i.ibb.co/pBRq6qgD/3.jpg",
+"https://i.ibb.co/3mpvnfG9/4.jpg",
+"https://i.ibb.co/dJfDjbcH/5.jpg",
+"https://i.ibb.co/B5mp3w6N/6.jpg",
+"https://i.ibb.co/35NJSdXx/8.jpg",
+"https://i.ibb.co/s90X4CNz/bathroom-design.jpg",
+"https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg",
+"https://i.ibb.co/8gsnQCkL/hoofd-Tegelwerk.jpg",
+"https://i.ibb.co/S4qN791C/jpg.jpg",
+"https://i.ibb.co/cX8mM2FF/Project-Zandvoort.jpg",
+"https://i.ibb.co/bgzxpV2j/Wij-realiseren-uw-droom-badkamer-Designa-Architectuur.jpg",
     ],
     intro:
       "We denken mee over indeling, vochtbestendige materialen en onderhoudsgemak. Tijdens het werk blijft je woning netjes en leefbaar.",
@@ -71,10 +77,11 @@ export const services: Service[] = [
 
   {
     slug: "plavuizen-vloer",
-    title: "Plavuizen vloer leggen",
+    title: "Gietvloer",
     excerpt:
       "Strak gelegde plavuizen, perfect gevoegd en uitgevlakt. Ook grootformaat en visgraat patronen.",
-    img: "https://images.unsplash.com/photo-1560185008-b033106af2d1?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/qFYnC3qh/gietvloer.jpg",
+
     bullets: [
       "Grootformaat en patronen zoals visgraat.",
       "Vlak volgens toleranties, strak voegwerk.",
@@ -82,12 +89,14 @@ export const services: Service[] = [
       "Nauwkeurige inmetingen en nette oplevering.",
     ],
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
+      "https://i.ibb.co/HT7pzNvq/6516cebb816a4907c137d26e-IMG-1473-kopie.webp",
+      "https://i.ibb.co/7Jz2Z9LY/epoxyvloeren.jpg",
+      "https://i.ibb.co/ccYGQBjD/epoxyvloer-keuken-1024x768.jpg",
+      "https://i.ibb.co/qFYnC3qh/gietvloer.jpg",
+      "https://i.ibb.co/N6BMq8Dn/hoofd-Gietvloer.jpg",
+      "https://i.ibb.co/3xmdG9K/IMG-20241107-WA0000.jpg",
+      "https://i.ibb.co/SwG8Vv9X/Installatie-gietvloer-1.jpg",
+      "https://i.ibb.co/dJ5640Wn/pu-gietvloer.jpg",
     ],
   },
 
@@ -118,7 +127,7 @@ export const services: Service[] = [
     title: "Stukadoor",
     excerpt:
       "Strak stucwerk klaar voor verf of behang. Wand- en plafondafwerking met oog voor detail.",
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/q2QRxrt/Hoofd-stucwerk.jpg",
     bullets: [
       "Glad stucwerk of lichte structuur.",
       "Haakse hoeken en nette aansluitingen.",
@@ -126,12 +135,12 @@ export const services: Service[] = [
       "Schoon opgeleverd en stofbeperkt.",
     ],
     images: [
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542240170-2a1c9a789b6e?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542317854-37f2b6a8fb15?q=80&w=1600&auto=format&fit=crop",
+      "https://i.ibb.co/TDqQSt3X/Faster-Drywall-Finishing-Fine-Homebuilding.jpg",
+      "https://i.ibb.co/RGqxZgGJ/hoelang-moet-stucwerk-drogen.webp",
+      "https://i.ibb.co/q2QRxrt/Hoofd-stucwerk.jpg",
+      "https://i.ibb.co/xSqLLKgr/I-Hate-Spackeling.jpg",
+      "https://i.ibb.co/cXYKNrhS/Stucadoorsbedrijf-Peter-Jansen-Stucadoor-in-Stiens-Friesland.jpg",
+      "https://i.ibb.co/WpPRZRnj/Stukadoor-gezocht-Prijs-Advies.jpg",
     ],
   },
 
@@ -140,7 +149,7 @@ export const services: Service[] = [
     title: "Tegelzetter",
     excerpt:
       "Nauwkeurig tegelwerk met strakke voegen, in natte ruimtes en woonvloeren. Patronen en grootformaat.",
-    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
+    img:  "https://i.ibb.co/3mpvnfG9/4.jpg",
     bullets: [
       "Laser-uitlijnen en strak snijwerk.",
       "Waterdichte opbouw in badkamers/WC.",
@@ -148,12 +157,18 @@ export const services: Service[] = [
       "Correcte voeg- en kitafwerking.",
     ],
     images: [
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1560185008-b033106af2d1?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?q=80&w=1600&auto=format&fit=crop",
+      "https://i.ibb.co/qM0Zr8hy/2.jpg",
+      "https://i.ibb.co/pBRq6qgD/3.jpg",
+      "https://i.ibb.co/3mpvnfG9/4.jpg",
+      "https://i.ibb.co/dJfDjbcH/5.jpg",
+      "https://i.ibb.co/B5mp3w6N/6.jpg",
+      "https://i.ibb.co/35NJSdXx/8.jpg",
+      "https://i.ibb.co/s90X4CNz/bathroom-design.jpg",
+      "https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg",
+      "https://i.ibb.co/8gsnQCkL/hoofd-Tegelwerk.jpg",
+      "https://i.ibb.co/S4qN791C/jpg.jpg",
+      "https://i.ibb.co/cX8mM2FF/Project-Zandvoort.jpg",
+      "https://i.ibb.co/bgzxpV2j/Wij-realiseren-uw-droom-badkamer-Designa-Architectuur.jpg",
     ],
   },
 
@@ -171,11 +186,6 @@ export const services: Service[] = [
     ],
     images: [
       "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1612157777902-5382bc6e864b?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1560185008-b033106af2d1?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600573472550-8090b5e86b31?q=80&w=1600&auto=format&fit=crop",
     ],
   },
 
@@ -184,7 +194,7 @@ export const services: Service[] = [
     title: "WC renovatie",
     excerpt:
       "Compacte renovatie van toilet: tegelwerk, hangtoilet, nis en afwerking. Snel klaar en supernetjes.",
-    img: "https://images.unsplash.com/photo-1542317854-37f2b6a8fb15?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg",
     bullets: [
       "Strak tegelwerk en voeg-/kitafwerking.",
       "Inbouwreservoir, hangtoilet en nisje.",
@@ -192,12 +202,18 @@ export const services: Service[] = [
       "Transparante kosten en planning.",
     ],
     images: [
-      "https://images.unsplash.com/photo-1542317854-37f2b6a8fb15?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1464965911861-746a04b4bca5?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1549187774-b4e9f044ff5d?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1564540574749-5c9a0e4d3c49?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1542240170-2a1c9a789b6e?q=80&w=1600&auto=format&fit=crop",
+      "https://i.ibb.co/qM0Zr8hy/2.jpg",
+"https://i.ibb.co/pBRq6qgD/3.jpg",
+"https://i.ibb.co/3mpvnfG9/4.jpg",
+"https://i.ibb.co/dJfDjbcH/5.jpg",
+"https://i.ibb.co/B5mp3w6N/6.jpg",
+"https://i.ibb.co/35NJSdXx/8.jpg",
+"https://i.ibb.co/s90X4CNz/bathroom-design.jpg",
+"https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg",
+"https://i.ibb.co/8gsnQCkL/hoofd-Tegelwerk.jpg",
+"https://i.ibb.co/S4qN791C/jpg.jpg",
+"https://i.ibb.co/cX8mM2FF/Project-Zandvoort.jpg",
+"https://i.ibb.co/bgzxpV2j/Wij-realiseren-uw-droom-badkamer-Designa-Architectuur.jpg",
     ],
   },
 
@@ -206,7 +222,7 @@ export const services: Service[] = [
     title: "Timmerwerk",
     excerpt:
       "Maatwerk interieurbouw, plafonds, wanden en reparaties. Strak en duurzaam met oog voor detail.",
-    img: "https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/4g0wpcFn/hoofd-Timmerwerk-jpg.webp",
     bullets: [
       "Maatwerk kasten, ombouwen en koofwerk.",
       "Egalisatie, aftimmering en afwerking.",
@@ -214,12 +230,13 @@ export const services: Service[] = [
       "Netjes gewerkt: afdekken en opruimen.",
     ],
     images: [
-      "https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1540574163026-643ea20ade25?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?q=80&w=1600&auto=format&fit=crop",
+      "https://i.ibb.co/vCP1gM0q/Go-ralskie-wne-trze.jpg",
+      "https://i.ibb.co/4g0wpcFn/hoofd-Timmerwerk-jpg.webp",
+      "https://i.ibb.co/7dy8Rh2G/timmerwerk-jpeg.jpg",
+      "https://i.ibb.co/WNb5FpXf/Umbau-und-Erweiterung-in-der-Indianersiedlung-Ko-ln-Zollstock-CATALANOQUIEL-Architekten-BDA.jpg",
+      "https://i.ibb.co/4gWN3KsY/X.jpg",
+      "https://i.ibb.co/cSDWkscJ/ZARNESTI-HOUSE-AIM.jpg",
+      "https://i.ibb.co/4wpQTchX/image.jpg",
     ],
   },
 ];
