@@ -1,11 +1,12 @@
 // src/lib/services.ts
+
 export type Service = {
   slug: string;
   title: string;
   excerpt: string;
   img: string;        // hero background
   bullets: string[];
-  images: string[];   // 6 images for the gallery (replace with ImgBB links)
+  images: string[];   // gallery images
   intro?: string;     // optional richer intro paragraph
   faq?: { q: string; a: string }[];
 };
@@ -24,12 +25,12 @@ export const services: Service[] = [
       "Scherpe planning en heldere communicatie.",
     ],
     images: [
-        "https://i.ibb.co/jPvG1bZ1/laminaat-1.jpg",
-        "https://i.ibb.co/fV9nfn5r/laminaat-2.jpg",
-        "https://i.ibb.co/LdZD4SzL/laminaat-4.jpg",
-        "https://i.ibb.co/MkGqPZ5t/laminaat-5.jpg",
-        "https://i.ibb.co/4gJBpwsN/laminaat-unsplash.jpg",
-        "https://i.ibb.co/v4XRLXLX/laminnat-3.jpg",
+      "https://i.ibb.co/jPvG1bZ1/laminaat-1.jpg",
+      "https://i.ibb.co/fV9nfn5r/laminaat-2.jpg",
+      "https://i.ibb.co/LdZD4SzL/laminaat-4.jpg",
+      "https://i.ibb.co/MkGqPZ5t/laminaat-5.jpg",
+      "https://i.ibb.co/4gJBpwsN/laminaat-unsplash.jpg",
+      "https://i.ibb.co/v4XRLXLX/laminnat-3.jpg",
     ],
     intro:
       "We adviseren over ondervloeren, patronen en plintprofielen. Ons team werkt netjes met beschermde looproutes en dagelijks opgeruimde werkplek.",
@@ -49,17 +50,17 @@ export const services: Service[] = [
     ],
     images: [
       "https://i.ibb.co/qM0Zr8hy/2.jpg",
-"https://i.ibb.co/pBRq6qgD/3.jpg",
-"https://i.ibb.co/3mpvnfG9/4.jpg",
-"https://i.ibb.co/dJfDjbcH/5.jpg",
-"https://i.ibb.co/B5mp3w6N/6.jpg",
-"https://i.ibb.co/35NJSdXx/8.jpg",
-"https://i.ibb.co/s90X4CNz/bathroom-design.jpg",
-"https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg",
-"https://i.ibb.co/8gsnQCkL/hoofd-Tegelwerk.jpg",
-"https://i.ibb.co/S4qN791C/jpg.jpg",
-"https://i.ibb.co/cX8mM2FF/Project-Zandvoort.jpg",
-"https://i.ibb.co/bgzxpV2j/Wij-realiseren-uw-droom-badkamer-Designa-Architectuur.jpg",
+      "https://i.ibb.co/pBRq6qgD/3.jpg",
+      "https://i.ibb.co/3mpvnfG9/4.jpg",
+      "https://i.ibb.co/dJfDjbcH/5.jpg",
+      "https://i.ibb.co/B5mp3w6N/6.jpg",
+      "https://i.ibb.co/35NJSdXx/8.jpg",
+      "https://i.ibb.co/s90X4CNz/bathroom-design.jpg",
+      "https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg",
+      "https://i.ibb.co/8gsnQCkL/hoofd-Tegelwerk.jpg",
+      "https://i.ibb.co/S4qN791C/jpg.jpg",
+      "https://i.ibb.co/cX8mM2FF/Project-Zandvoort.jpg",
+      "https://i.ibb.co/bgzxpV2j/Wij-realiseren-uw-droom-badkamer-Designa-Architectuur.jpg",
     ],
     intro:
       "We denken mee over indeling, vochtbestendige materialen en onderhoudsgemak. Tijdens het werk blijft je woning netjes en leefbaar.",
@@ -75,18 +76,18 @@ export const services: Service[] = [
     ],
   },
 
+  // Let op: slug behouden om bestaande links niet te breken
   {
     slug: "plavuizen-vloer",
     title: "Gietvloer",
     excerpt:
-      "Strak gelegde plavuizen, perfect gevoegd en uitgevlakt. Ook grootformaat en visgraat patronen.",
+      "Naadloze gietvloer met moderne uitstraling. Slijtvast, onderhoudsvriendelijk en geschikt voor vloerverwarming.",
     img: "https://i.ibb.co/qFYnC3qh/gietvloer.jpg",
-
     bullets: [
-      "Grootformaat en patronen zoals visgraat.",
-      "Vlak volgens toleranties, strak voegwerk.",
-      "Vloerverwarming-vriendelijke opbouw en lijmen.",
-      "Nauwkeurige inmetingen en nette oplevering.",
+      "Naadloos en strak eindresultaat.",
+      "PU- en epoxy gietvloeren mogelijk.",
+      "Geschikt voor vloerverwarming.",
+      "Duurzaam, waterdicht en onderhoudsvriendelijk.",
     ],
     images: [
       "https://i.ibb.co/HT7pzNvq/6516cebb816a4907c137d26e-IMG-1473-kopie.webp",
@@ -94,10 +95,10 @@ export const services: Service[] = [
       "https://i.ibb.co/ccYGQBjD/epoxyvloer-keuken-1024x768.jpg",
       "https://i.ibb.co/qFYnC3qh/gietvloer.jpg",
       "https://i.ibb.co/N6BMq8Dn/hoofd-Gietvloer.jpg",
-      "https://i.ibb.co/3xmdG9K/IMG-20241107-WA0000.jpg",
-      "https://i.ibb.co/SwG8Vv9X/Installatie-gietvloer-1.jpg",
       "https://i.ibb.co/dJ5640Wn/pu-gietvloer.jpg",
     ],
+    intro:
+      "Wij adviseren over type gietvloer, kleur en afwerking. De vloer wordt in meerdere lagen aangebracht voor een duurzaam en strak resultaat.",
   },
 
   {
@@ -149,7 +150,7 @@ export const services: Service[] = [
     title: "Tegelzetter",
     excerpt:
       "Nauwkeurig tegelwerk met strakke voegen, in natte ruimtes en woonvloeren. Patronen en grootformaat.",
-    img:  "https://i.ibb.co/3mpvnfG9/4.jpg",
+    img: "https://i.ibb.co/3mpvnfG9/4.jpg",
     bullets: [
       "Laser-uitlijnen en strak snijwerk.",
       "Waterdichte opbouw in badkamers/WC.",
@@ -203,17 +204,17 @@ export const services: Service[] = [
     ],
     images: [
       "https://i.ibb.co/qM0Zr8hy/2.jpg",
-"https://i.ibb.co/pBRq6qgD/3.jpg",
-"https://i.ibb.co/3mpvnfG9/4.jpg",
-"https://i.ibb.co/dJfDjbcH/5.jpg",
-"https://i.ibb.co/B5mp3w6N/6.jpg",
-"https://i.ibb.co/35NJSdXx/8.jpg",
-"https://i.ibb.co/s90X4CNz/bathroom-design.jpg",
-"https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg",
-"https://i.ibb.co/8gsnQCkL/hoofd-Tegelwerk.jpg",
-"https://i.ibb.co/S4qN791C/jpg.jpg",
-"https://i.ibb.co/cX8mM2FF/Project-Zandvoort.jpg",
-"https://i.ibb.co/bgzxpV2j/Wij-realiseren-uw-droom-badkamer-Designa-Architectuur.jpg",
+      "https://i.ibb.co/pBRq6qgD/3.jpg",
+      "https://i.ibb.co/3mpvnfG9/4.jpg",
+      "https://i.ibb.co/dJfDjbcH/5.jpg",
+      "https://i.ibb.co/B5mp3w6N/6.jpg",
+      "https://i.ibb.co/35NJSdXx/8.jpg",
+      "https://i.ibb.co/s90X4CNz/bathroom-design.jpg",
+      "https://i.ibb.co/wrwwGcYS/Bathroom-Tile-Designs.jpg",
+      "https://i.ibb.co/8gsnQCkL/hoofd-Tegelwerk.jpg",
+      "https://i.ibb.co/S4qN791C/jpg.jpg",
+      "https://i.ibb.co/cX8mM2FF/Project-Zandvoort.jpg",
+      "https://i.ibb.co/bgzxpV2j/Wij-realiseren-uw-droom-badkamer-Designa-Architectuur.jpg",
     ],
   },
 
@@ -237,6 +238,175 @@ export const services: Service[] = [
       "https://i.ibb.co/4gWN3KsY/X.jpg",
       "https://i.ibb.co/cSDWkscJ/ZARNESTI-HOUSE-AIM.jpg",
       "https://i.ibb.co/4wpQTchX/image.jpg",
+    ],
+    intro:
+      "Wij maken en monteren maatwerk dat past bij jouw woning. We werken netjes, meten nauwkeurig in en leveren strak af.",
+  },
+
+  // ------------------ NIEUWE DIENSTEN ------------------
+
+  {
+    slug: "sloopwerk",
+    title: "Sloopwerk",
+    excerpt:
+      "Vakkundig sloopwerk met oog voor veiligheid en nette afvoer. Ideaal voor renovatie en verbouwing.",
+    img: "https://i.ibb.co/ycJLF4mp/092091021.jpg",
+    bullets: [
+      "Binnen- en buitensloop (wanden, vloeren, keukens, badkamers).",
+      "Stofbeperkt werken met afscherming waar nodig.",
+      "Afvoer van puin en bouwafval.",
+      "Voorbereiding voor de volgende bouwfase.",
+    ],
+    images: [
+      "https://i.ibb.co/ycJLF4mp/092091021.jpg",
+      "https://i.ibb.co/rGWbsRmd/Afbeelding-van-Whats-App-op-2023-08-11-om-15-23-55-1920w-jpg.webp",
+      "https://i.ibb.co/XrgHXXHX/d3304cc6-58ff-4283-847c-1fc541724f46.jpg",
+      "https://i.ibb.co/35d1qFcx/IMG-1569-jpg.avif",
+      "https://i.ibb.co/Gfq1ZxDr/metgroep-footer01.jpg",
+      "https://i.ibb.co/zhpQ12YG/renovatiesloopwerkzaamheden-binnenshuis.jpg",
+      "https://i.ibb.co/BDwYSGj/sloopbedrijf-in-rotterdam-jpg.webp",
+    ],
+    intro:
+      "We slopen gecontroleerd en veilig. De werkplek wordt netjes achtergelaten en het afval voeren we volgens afspraak af.",
+  },
+
+  {
+    slug: "raam-en-deurmontage",
+    title: "Raam- en deurmontage",
+    excerpt:
+      "Vakkundige montage van ramen en deuren voor betere isolatie, veiligheid en een strakke afwerking.",
+    img: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1600&auto=format&fit=crop",
+    bullets: [
+      "Montage en afstelling van ramen en deuren.",
+      "Goede kierdichting voor comfort en energiebesparing.",
+      "Netjes aftimmeren en afwerken.",
+      "Geschikt voor renovatie en nieuwbouw.",
+    ],
+    images: [],
+  },
+
+  {
+    slug: "keukenmontage",
+    title: "Keukenmontage",
+    excerpt:
+      "Professionele keukenmontage: kasten plaatsen, stellen en een strakke, nette oplevering.",
+    img: "https://images.unsplash.com/photo-1556912167-f556f1f39df1?q=80&w=1600&auto=format&fit=crop",
+    bullets: [
+      "Monteren en stellen van keukenkasten.",
+      "Uitsparingen en maatwerk waar nodig.",
+      "Aansluiten van apparatuur (in overleg).",
+      "Netjes afgewerkt en klaar voor gebruik.",
+    ],
+    images: [],
+  },
+
+  {
+    slug: "tuinmuur-en-hekwerk",
+    title: "Tuinmuur en hekwerk",
+    excerpt:
+      "Stevige tuinmuren en hekwerk voor veiligheid, privacy en een nette uitstraling.",
+    img: "https://images.unsplash.com/photo-1595433707802-3c92bda4f7a4?q=80&w=1600&auto=format&fit=crop",
+    bullets: [
+      "Metselen of plaatsen van tuinmuur.",
+      "Plaatsen van hekwerk en poorten.",
+      "Duurzame materialen en stevige montage.",
+      "Strakke lijnen en nette afwerking.",
+    ],
+    images: [],
+  },
+
+  {
+    slug: "op-maat-kastbouwen",
+    title: "Op maat kastbouwen",
+    excerpt:
+      "Maatwerk kasten die perfect passen: strak ontwerp, slimme indeling en duurzame afwerking.",
+    img: "https://images.unsplash.com/photo-1598300053545-d2b42bba0b88?q=80&w=1600&auto=format&fit=crop",
+    bullets: [
+      "Inbouwkasten, garderobekasten en tv-meubels.",
+      "Slimme indeling en maximale benutting van ruimte.",
+      "Netjes gemonteerd en strak afgewerkt.",
+      "Materiaal- en afwerkingsadvies mogelijk.",
+    ],
+    images: [],
+  },
+
+  {
+    slug: "loodgieterij",
+    title: "Loodgieterij",
+    excerpt:
+      "Betrouwbaar loodgieterswerk: leidingwerk, sanitair en afvoer. Netjes en volgens afspraak.",
+    img: "https://i.ibb.co/x88Q4CpM/hoofd-Loodgieterij.jpg",
+    bullets: [
+      "Leidingwerk voor water en afvoer.",
+      "Sanitair aansluiten en vervangen.",
+      "Lekreparaties en onderhoud.",
+      "Netjes gewerkt en duidelijk overleg.",
+    ],
+    images: [
+      "https://i.ibb.co/1fH1Gh1Z/image.jpg",
+      "https://i.ibb.co/hxh30yG7/2.jpg",
+      "https://i.ibb.co/yc98WLcD/3.jpg",
+      "https://i.ibb.co/PyF19Sr/4.jpg",
+      "https://i.ibb.co/x88Q4CpM/hoofd-Loodgieterij.jpg"
+    ],
+  },
+
+  {
+    slug: "elektriciteit",
+    title: "Elektriciteit",
+    excerpt:
+      "Veilige en nette elektrische werkzaamheden: stopcontacten, verlichting en aanpassingen in huis.",
+    img: "https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1600&auto=format&fit=crop",
+    bullets: [
+      "Aanleggen en verplaatsen van stopcontacten en schakelaars.",
+      "Verlichting plaatsen (binnen/buiten).",
+      "Netjes wegwerken van kabels en goten.",
+      "Veilig werken en duidelijke afspraken.",
+    ],
+    images: [],
+  },
+
+  {
+    slug: "traprenovatie",
+    title: "Traprenovatie",
+    excerpt:
+      "Geef je trap een nieuwe uitstraling met een duurzame en strakke renovatie.",
+    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
+    bullets: [
+      "Overzettreden of nieuwe bekleding mogelijk.",
+      "Strakke afwerking en duurzame materialen.",
+      "Snel uitgevoerd met minimale overlast.",
+      "Moderne uitstraling passend bij je interieur.",
+    ],
+    images: [
+      "https://i.ibb.co/j9D7dVNk/2.jpg",
+      "https://i.ibb.co/mV03bNvh/Chique-hal-Den-Breejen-Interieur.jpg",
+      "https://i.ibb.co/DHRdyjpJ/Hallway-Black-white-wood.jpg",
+      "https://i.ibb.co/9M5YVQK/hoofd-Traprenovatie.jpg",
+      "https://i.ibb.co/FLnCHtNR/Opentrap.jpg",
+      "https://i.ibb.co/CKS9jpcP/Trap-gestoffeerd-met-Cunera-Schaft-sisal-tapijt-in-visgraat.jpg",
+      "https://i.ibb.co/Z1JxMmxf/Traprenovatie-met-PVC-trapbekleding-Vloeren-Trappen.jpg",],
+  },
+
+  {
+    slug: "metselwerk",
+    title: "Metselwerk",
+    excerpt:
+      "Professioneel metselwerk voor binnen en buiten: nieuw, herstel of aanpassingen.",
+    img: "https://i.ibb.co/WvR12F9S/hoofd-metselwerk.webp",
+    bullets: [
+      "Nieuw metselwerk en herstelwerk.",
+      "Strakke voegen en nette afwerking.",
+      "Sterke en duurzame constructies.",
+      "Voor renovatie, aanbouw en tuinwerk.",
+    ],
+    images: [
+      "https://i.ibb.co/b56gqW7T/Blokverband-metselwerk.jpg",
+       "https://i.ibb.co/WvR12F9S/hoofd-metselwerk.webp",
+       "https://i.ibb.co/8SkcPR4/Metselwerk-rond-raam.jpg",
+       "https://i.ibb.co/HLfxJcxg/Moderne-jaren-30-woning.jpg",
+       "https://i.ibb.co/Rp3YX4hB/Moderne-tweewoonst-B-B.jpg",
+       "https://i.ibb.co/KBmpgk7/Mossoux-Architecten.jpg",
     ],
   },
 ];
