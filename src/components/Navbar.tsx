@@ -4,20 +4,22 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { services } from "@/lib/services";
+import { useI18n } from "@/lib/i18n";
 
 function cx(...cls: (string | false | null | undefined)[]) {
   return cls.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);              // mobile drawer
+  const { t } = useI18n();
+
+  const [open, setOpen] = useState(false); // mobile drawer
   const [dienstenOpen, setDienstenOpen] = useState(false); // desktop dropdown
-  const [hovering, setHovering] = useState(false);      // hover intent guard
   const path = usePathname();
 
   const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Close desktop dropdown on route change
+  // Close dropdown/drawer on route change
   useEffect(() => {
     setDienstenOpen(false);
     setOpen(false);
@@ -26,15 +28,11 @@ export default function Navbar() {
   // Hover intent handling (desktop)
   function openWithIntent() {
     if (hoverTimer.current) clearTimeout(hoverTimer.current);
-    setHovering(true);
     hoverTimer.current = setTimeout(() => setDienstenOpen(true), 80);
   }
   function closeWithIntent() {
     if (hoverTimer.current) clearTimeout(hoverTimer.current);
-    hoverTimer.current = setTimeout(() => {
-      setHovering(false);
-      setDienstenOpen(false);
-    }, 120);
+    hoverTimer.current = setTimeout(() => setDienstenOpen(false), 120);
   }
 
   // Keyboard accessibility for desktop dropdown
@@ -56,24 +54,22 @@ export default function Navbar() {
         {/* Logo */}
         <div className="flex items-center gap-3">
           <Link href="/" aria-label="Klusdam homepage" className="flex items-center">
-  <img
-    src="https://i.ibb.co/Z1hM3YWs/final-1.png"
-    alt="Klusdam logo"
-    className="h-full max-h-14 w-auto object-contain opacity-90"
-  />
-</Link>
+            <img
+              src="https://i.ibb.co/Z1hM3YWs/final-1.png"
+              alt="Klusdam logo"
+              className="h-full max-h-14 w-auto object-contain opacity-90"
+            />
+          </Link>
         </div>
 
         {/* Desktop nav */}
         <nav className="hidden md:flex items-center gap-2">
-          <NavLink href="/" active={path === "/"}>Home</NavLink>
+          <NavLink href="/" active={path === "/"}>
+            {t("home")}
+          </NavLink>
 
           {/* Diensten with hover-intent dropdown */}
-          <div
-            className="relative"
-            onMouseEnter={openWithIntent}
-            onMouseLeave={closeWithIntent}
-          >
+          <div className="relative" onMouseEnter={openWithIntent} onMouseLeave={closeWithIntent}>
             <button
               onClick={() => setDienstenOpen((v) => !v)}
               onKeyDown={onDienstenKey}
@@ -84,13 +80,12 @@ export default function Navbar() {
                 path?.startsWith("/diensten") && "text-bronze"
               )}
             >
-              Diensten
+              {t("diensten")}
             </button>
 
             {dienstenOpen && (
               <div
                 className="absolute left-0 mt-2 w-[560px] rounded-xl shadow-xl bg-white border border-black/10 p-4 grid grid-cols-2 gap-2"
-                onMouseEnter={() => setHovering(true)}
                 onMouseLeave={closeWithIntent}
                 role="menu"
               >
@@ -102,10 +97,11 @@ export default function Navbar() {
                       className="px-3 py-2 rounded hover:bg-cream text-sm"
                       role="menuitem"
                     >
-                      {s.title}
+                      {t(s.titleKey)}
                     </Link>
                   ))}
                 </div>
+
                 <div className="flex flex-col">
                   {right.map((s) => (
                     <Link
@@ -114,32 +110,35 @@ export default function Navbar() {
                       className="px-3 py-2 rounded hover:bg-cream text-sm"
                       role="menuitem"
                     >
-                      {s.title}
+                      {t(s.titleKey)}
                     </Link>
                   ))}
                 </div>
 
                 <div className="col-span-2 border-t border-black/10 mt-2 pt-2 text-right">
-                  <Link
-                    href="/diensten"
-                    className="inline-flex items-center gap-1 text-sm font-semibold text-bronze"
-                  >
-                    Alle diensten →
+                  <Link href="/diensten" className="inline-flex items-center gap-1 text-sm font-semibold text-bronze">
+                    {t("all_services")} →
                   </Link>
                 </div>
               </div>
             )}
           </div>
 
-          <NavLink href="/over-ons" active={path === "/over-ons"}>Over ons</NavLink>
-          <NavLink href="/projecten" active={path === "/projecten"}>Projecten</NavLink>
-          <NavLink href="/contact" active={path === "/contact"}>Contact</NavLink>
+          <NavLink href="/over-ons" active={path === "/over-ons"}>
+            {t("over")}
+          </NavLink>
+          <NavLink href="/projecten" active={path === "/projecten"}>
+            {t("projecten")}
+          </NavLink>
+          <NavLink href="/contact" active={path === "/contact"}>
+            {t("contact")}
+          </NavLink>
         </nav>
 
         {/* Mobile hamburger */}
         <button
           className="md:hidden inline-flex items-center justify-center rounded-lg p-3 ring-1 ring-black/10"
-          aria-label="Open menu"
+          aria-label={t("open_menu")}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
         >
@@ -155,14 +154,17 @@ export default function Navbar() {
       {open && (
         <div className="md:hidden border-t border-black/10 bg-white">
           <div className="mx-auto max-w-7xl px-4 py-3">
-            <MobileLink href="/" onClick={() => setOpen(false)} active={path === "/"}>Home</MobileLink>
+            <MobileLink href="/" onClick={() => setOpen(false)} active={path === "/"}>
+              {t("home")}
+            </MobileLink>
 
             {/* Mobile accordion for Diensten */}
             <details className="group">
               <summary className="cursor-pointer select-none px-3 py-2 font-semibold rounded-lg hover:bg-black/5 flex items-center justify-between">
-                <span className={cx(path?.startsWith("/diensten") && "text-bronze")}>Diensten</span>
+                <span className={cx(path?.startsWith("/diensten") && "text-bronze")}>{t("diensten")}</span>
                 <span className="transition-transform group-open:rotate-180">▾</span>
               </summary>
+
               <div className="pl-2">
                 {services.map((s) => (
                   <MobileLink
@@ -171,18 +173,25 @@ export default function Navbar() {
                     onClick={() => setOpen(false)}
                     active={path === `/diensten/${s.slug}`}
                   >
-                    {s.title}
+                    {t(s.titleKey)}
                   </MobileLink>
                 ))}
+
                 <MobileLink href="/diensten" onClick={() => setOpen(false)} active={path === "/diensten"}>
-                  Alle diensten →
+                  {t("all_services")} →
                 </MobileLink>
               </div>
             </details>
 
-            <MobileLink href="/over-ons" onClick={() => setOpen(false)} active={path === "/over-ons"}>Over ons</MobileLink>
-            <MobileLink href="/projecten" onClick={() => setOpen(false)} active={path === "/projecten"}>Projecten</MobileLink>
-            <MobileLink href="/contact" onClick={() => setOpen(false)} active={path === "/contact"}>Contact</MobileLink>
+            <MobileLink href="/over-ons" onClick={() => setOpen(false)} active={path === "/over-ons"}>
+              {t("over")}
+            </MobileLink>
+            <MobileLink href="/projecten" onClick={() => setOpen(false)} active={path === "/projecten"}>
+              {t("projecten")}
+            </MobileLink>
+            <MobileLink href="/contact" onClick={() => setOpen(false)} active={path === "/contact"}>
+              {t("contact")}
+            </MobileLink>
           </div>
         </div>
       )}
@@ -227,10 +236,7 @@ function MobileLink({
     <Link
       href={href}
       onClick={onClick}
-      className={cx(
-        "block px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
-        active && "text-bronze"
-      )}
+      className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", active && "text-bronze")}
     >
       {children}
     </Link>
