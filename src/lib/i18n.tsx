@@ -279,6 +279,51 @@ contact_address: "Adres",
 contact_phone: "Telefoon",
 contact_email_label: "E-mail",
 
+over_title: "Klusdam in Schiedam",
+over_intro:
+  "Woningrenovatie zonder stress. Wij plannen, coördineren en leveren op met garantie. Eén team voor sloop, leidingwerk, tegel- en timmerwerk, stuken en schilderen.",
+over_bullet_1:
+  "Afspraak = afspraak. Strakke planning en vaste contactpersoon.",
+over_bullet_2:
+  "Netjes werken: stofbeperking, afdekking en elke dag opgeruimd.",
+over_bullet_3:
+  "Duurzame materialen en vakmanschap dat jaren mooi blijft.",
+over_location:
+  "Standplaats: Von Leibnizstraat 23 a, 3112 XN Schiedam. Werkgebied: Schiedam, Rotterdam, Vlaardingen, Delft en omgeving.",
+over_image_alt: "Klusdam team aan het werk",
+
+cat_badkamers: "Badkamers",
+cat_vloeren: "Vloeren",
+cat_laminaat: "Laminaat",
+cat_stuc_schilder: "Stuc/Schilder",
+cat_timmerwerk: "Timmerwerk",
+cat_traprenovatie: "Traprenovatie",
+cat_behangwerk: "Behangwerk",
+cat_metselwerk: "Metselwerk",
+cat_loodgieterij: "Loodgieterij",
+cat_overig: "Overig",
+
+prj_title_badk_1: "Badkamer renovatie – donker marmer",
+prj_title_badk_2: "Badkamer – inloopdouche & nis",
+prj_title_vloer_1: "Plavuizen grootformaat",
+prj_title_lam_1: "Laminaat warm eiken",
+prj_title_stuk_1: "Stucwerk en schilder",
+prj_title_tim_1: "Timmerwerk – maatwerk kast",
+prj_title_trap_1: "Traprenovatie – overzettreden",
+prj_title_behang_1: "Behangwerk – patroon",
+prj_title_mets_1: "Metselwerk & voeg",
+prj_title_lood_1: "Loodgieterij – leidingen & afvoer",
+prj_title_overig_1: "Diverse renovatieprojecten",
+
+tag_badkamer: "badkamer",
+tag_tegelzetter: "tegelzetter",
+tag_inloopdouche: "inloopdouche",
+tag_plavuizen: "plavuizen",
+tag_laminaat: "laminaat",
+tag_stukadoor: "stukadoor",
+tag_schilder: "schilder",
+tag_timmerwerk: "timmerwerk",
+tag_trap: "trap",
 
 
   },
@@ -509,6 +554,52 @@ contact_phone: "Phone",
 contact_email_label: "Email",
 
 
+over_title: "Klusdam in Schiedam",
+over_intro:
+  "Stress-free home renovation. We plan, coordinate, and deliver with guarantee. One team for demolition, plumbing, tiling, carpentry, plastering, and painting.",
+over_bullet_1:
+  "Clear agreements. Tight planning and one fixed point of contact.",
+over_bullet_2:
+  "Clean work: dust control, protection, and daily cleanup.",
+over_bullet_3:
+  "Durable materials and craftsmanship that lasts for years.",
+over_location:
+  "Based at Von Leibnizstraat 23 a, 3112 XN Schiedam. Active in Schiedam, Rotterdam, Vlaardingen, Delft and surroundings.",
+over_image_alt: "Klusdam team at work",
+
+cat_badkamers: "Bathrooms",
+cat_vloeren: "Floors",
+cat_laminaat: "Laminate",
+cat_stuc_schilder: "Plaster/Paint",
+cat_timmerwerk: "Carpentry",
+cat_traprenovatie: "Stair renovation",
+cat_behangwerk: "Wallpaper",
+cat_metselwerk: "Masonry",
+cat_loodgieterij: "Plumbing",
+cat_overig: "Other",
+
+prj_title_badk_1: "Bathroom renovation – dark marble",
+prj_title_badk_2: "Bathroom – walk-in shower & niche",
+prj_title_vloer_1: "Large-format tiles",
+prj_title_lam_1: "Warm oak laminate",
+prj_title_stuk_1: "Plastering and painting",
+prj_title_tim_1: "Carpentry – custom cabinet",
+prj_title_trap_1: "Stair renovation – overlay treads",
+prj_title_behang_1: "Wallpaper – pattern",
+prj_title_mets_1: "Masonry & pointing",
+prj_title_lood_1: "Plumbing – pipes & drainage",
+prj_title_overig_1: "Various renovation projects",
+
+tag_badkamer: "bathroom",
+tag_tegelzetter: "tiler",
+tag_inloopdouche: "walk-in shower",
+tag_plavuizen: "tiles",
+tag_laminaat: "laminate",
+tag_stukadoor: "plasterer",
+tag_schilder: "painter",
+tag_timmerwerk: "carpentry",
+tag_trap: "stairs",
+
 
   },
 
@@ -736,6 +827,54 @@ contact_inline_intro:
 contact_address: "Adresse",
 contact_phone: "Telefon",
 contact_email_label: "E-Mail",
+
+
+over_title: "Klusdam in Schiedam",
+over_intro:
+  "Stressfreie Hausrenovierung. Wir planen, koordinieren und liefern mit Garantie. Ein Team für Abbruch, Sanitär, Fliesen, Tischler-, Putz- und Malerarbeiten.",
+over_bullet_1:
+  "Absprachen werden eingehalten. Klare Planung und ein fester Ansprechpartner.",
+over_bullet_2:
+  "Sauberes Arbeiten: Staubreduzierung, Abdeckung und tägliche Reinigung.",
+over_bullet_3:
+  "Langlebige Materialien und Handwerksqualität.",
+over_location:
+  "Standort: Von Leibnizstraat 23 a, 3112 XN Schiedam. Einsatzgebiet: Schiedam, Rotterdam, Vlaardingen, Delft und Umgebung.",
+over_image_alt: "Klusdam Team bei der Arbeit",
+
+
+cat_badkamers: "Badezimmer",
+cat_vloeren: "Böden",
+cat_laminaat: "Laminat",
+cat_stuc_schilder: "Putz/Malerarbeiten",
+cat_timmerwerk: "Tischlerarbeiten",
+cat_traprenovatie: "Treppenrenovierung",
+cat_behangwerk: "Tapezierarbeiten",
+cat_metselwerk: "Mauerwerk",
+cat_loodgieterij: "Sanitär",
+cat_overig: "Sonstiges",
+
+prj_title_badk_1: "Badezimmersanierung – dunkler Marmor",
+prj_title_badk_2: "Badezimmer – begehbare Dusche & Nische",
+prj_title_vloer_1: "Großformatige Fliesen",
+prj_title_lam_1: "Laminat in warmer Eiche",
+prj_title_stuk_1: "Putz- und Malerarbeiten",
+prj_title_tim_1: "Tischlerarbeit – Maßanfertigung",
+prj_title_trap_1: "Treppenrenovierung – Aufsatzstufen",
+prj_title_behang_1: "Tapezierarbeit – Muster",
+prj_title_mets_1: "Mauerwerk & Verfugung",
+prj_title_lood_1: "Sanitär – Leitungen & Abfluss",
+prj_title_overig_1: "Verschiedene Renovierungsprojekte",
+
+tag_badkamer: "Badezimmer",
+tag_tegelzetter: "Fliesenleger",
+tag_inloopdouche: "begehbare Dusche",
+tag_plavuizen: "Fliesen",
+tag_laminaat: "Laminat",
+tag_stukadoor: "Stuckateur",
+tag_schilder: "Maler",
+tag_timmerwerk: "Tischler",
+tag_trap: "Treppe",
 
 
   },
@@ -968,6 +1107,54 @@ contact_phone: "Téléphone",
 contact_email_label: "E-mail",
 
 
+over_title: "Klusdam à Schiedam",
+over_intro:
+  "Rénovation de maison sans stress. Nous planifions, coordonnons et livrons avec garantie. Une seule équipe pour démolition, plomberie, carrelage, menuiserie, plâtrerie et peinture.",
+over_bullet_1:
+  "Engagements clairs et un seul interlocuteur.",
+over_bullet_2:
+  "Travail propre : limitation de la poussière et nettoyage quotidien.",
+over_bullet_3:
+  "Matériaux durables et savoir-faire de qualité.",
+over_location:
+  "Basé à Von Leibnizstraat 23 a, 3112 XN Schiedam. Zone d’intervention : Schiedam, Rotterdam, Vlaardingen, Delft et environs.",
+over_image_alt: "Équipe Klusdam au travail",
+
+
+cat_badkamers: "Salles de bain",
+cat_vloeren: "Sols",
+cat_laminaat: "Stratifié",
+cat_stuc_schilder: "Plâtre/Peinture",
+cat_timmerwerk: "Menuiserie",
+cat_traprenovatie: "Rénovation d’escalier",
+cat_behangwerk: "Papier peint",
+cat_metselwerk: "Maçonnerie",
+cat_loodgieterij: "Plomberie",
+cat_overig: "Autres",
+
+prj_title_badk_1: "Rénovation de salle de bain – marbre foncé",
+prj_title_badk_2: "Salle de bain – douche à l’italienne & niche",
+prj_title_vloer_1: "Carrelage grand format",
+prj_title_lam_1: "Stratifié chêne chaleureux",
+prj_title_stuk_1: "Plâtrage et peinture",
+prj_title_tim_1: "Menuiserie – armoire sur mesure",
+prj_title_trap_1: "Rénovation d’escalier – marches rapportées",
+prj_title_behang_1: "Papier peint – motif",
+prj_title_mets_1: "Maçonnerie & jointoiement",
+prj_title_lood_1: "Plomberie – conduites & évacuation",
+prj_title_overig_1: "Divers projets de rénovation",
+
+tag_badkamer: "salle de bain",
+tag_tegelzetter: "carreleur",
+tag_inloopdouche: "douche à l’italienne",
+tag_plavuizen: "carrelage",
+tag_laminaat: "stratifié",
+tag_stukadoor: "plâtrier",
+tag_schilder: "peintre",
+tag_timmerwerk: "menuiserie",
+tag_trap: "escalier",
+
+
   },
 
   tr: {
@@ -1198,6 +1385,55 @@ contact_address: "Adres",
 contact_phone: "Telefon",
 contact_email_label: "E-posta",
 
+
+over_title: "Schiedam’da Klusdam",
+over_intro:
+  "Stres olmadan ev yenileme. Planlar, koordine eder ve garantiyle teslim ederiz. Yıkım, tesisat, fayans, marangozluk, sıva ve boya için tek ekip.",
+over_bullet_1:
+  "Söz verdik mi yaparız. Net planlama ve tek muhatap.",
+over_bullet_2:
+  "Temiz çalışma: toz kontrolü ve günlük temizlik.",
+over_bullet_3:
+  "Uzun ömürlü malzemeler ve kaliteli işçilik.",
+over_location:
+  "Merkez: Von Leibnizstraat 23 a, 3112 XN Schiedam. Hizmet alanı: Schiedam, Rotterdam, Vlaardingen, Delft ve çevresi.",
+over_image_alt: "Klusdam ekibi çalışırken",
+
+
+cat_badkamers: "Banyolar",
+cat_vloeren: "Zeminler",
+cat_laminaat: "Laminat",
+cat_stuc_schilder: "Sıva/Boya",
+cat_timmerwerk: "Marangozluk",
+cat_traprenovatie: "Merdiven yenileme",
+cat_behangwerk: "Duvar kağıdı",
+cat_metselwerk: "Duvar örme",
+cat_loodgieterij: "Tesisat",
+cat_overig: "Diğer",
+
+prj_title_badk_1: "Banyo yenileme – koyu mermer",
+prj_title_badk_2: "Banyo – duşakabin & niş",
+prj_title_vloer_1: "Büyük ebat seramik",
+prj_title_lam_1: "Sıcak meşe laminat",
+prj_title_stuk_1: "Sıva ve boya",
+prj_title_tim_1: "Marangozluk – özel dolap",
+prj_title_trap_1: "Merdiven yenileme – kaplama basamak",
+prj_title_behang_1: "Duvar kağıdı – desen",
+prj_title_mets_1: "Duvar örme & derz",
+prj_title_lood_1: "Tesisat – borular & gider",
+prj_title_overig_1: "Çeşitli tadilat projeleri",
+
+tag_badkamer: "banyo",
+tag_tegelzetter: "fayans ustası",
+tag_inloopdouche: "duş",
+tag_plavuizen: "seramik",
+tag_laminaat: "laminat",
+tag_stukadoor: "sıva ustası",
+tag_schilder: "boyacı",
+tag_timmerwerk: "marangozluk",
+tag_trap: "merdiven",
+
+
   },
 
   ar: {
@@ -1425,6 +1661,52 @@ contact_inline_intro:
 contact_address: "العنوان",
 contact_phone: "الهاتف",
 contact_email_label: "البريد الإلكتروني",
+
+over_title: "كلوسدام في سخيدام",
+over_intro:
+  "تجديد المنازل بدون توتر. نخطط، ننسق، ونسلّم مع ضمان. فريق واحد للهدم، السباكة، التبليط، النجارة، اللياسة والدهان.",
+over_bullet_1:
+  "التزام كامل بالمواعيد ونقطة تواصل واحدة.",
+over_bullet_2:
+  "عمل نظيف: تقليل الغبار وتنظيف يومي.",
+over_bullet_3:
+  "مواد متينة وحرفية تدوم لسنوات.",
+over_location:
+  "الموقع: Von Leibnizstraat 23 a، 3112 XN سخيدام. منطقة العمل: سخيدام، روتردام، فلااردينغن، دلفت والمناطق المحيطة.",
+over_image_alt: "فريق كلوسدام أثناء العمل",
+
+cat_badkamers: "الحمّامات",
+cat_vloeren: "الأرضيات",
+cat_laminaat: "اللامينيت",
+cat_stuc_schilder: "اللياسة / الدهان",
+cat_timmerwerk: "النجارة",
+cat_traprenovatie: "تجديد السلالم",
+cat_behangwerk: "ورق الجدران",
+cat_metselwerk: "البناء",
+cat_loodgieterij: "السباكة",
+cat_overig: "أخرى",
+
+prj_title_badk_1: "تجديد حمّام – رخام داكن",
+prj_title_badk_2: "حمّام – دش مفتوح مع تجويف",
+prj_title_vloer_1: "بلاط كبير الحجم",
+prj_title_lam_1: "أرضية لامينيت بلون البلوط",
+prj_title_stuk_1: "لياسة ودهان",
+prj_title_tim_1: "نجارة – خزانة حسب الطلب",
+prj_title_trap_1: "تجديد درج – تغطية الدرج",
+prj_title_behang_1: "ورق جدران – نقش",
+prj_title_mets_1: "أعمال بناء وفواصل",
+prj_title_lood_1: "سباكة – أنابيب وتصريف",
+prj_title_overig_1: "مشاريع تجديد متنوعة",
+
+tag_badkamer: "حمّام",
+tag_tegelzetter: "مبلّط",
+tag_inloopdouche: "دش مفتوح",
+tag_plavuizen: "بلاط",
+tag_laminaat: "لامينيت",
+tag_stukadoor: "مُليس",
+tag_schilder: "دهّان",
+tag_timmerwerk: "نجارة",
+tag_trap: "درج",
 
 
 
