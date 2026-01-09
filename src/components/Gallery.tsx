@@ -25,6 +25,15 @@ function cx(...cls: (string | false | null | undefined)[]) {
   return cls.filter(Boolean).join(" ");
 }
 
+// Ensure local paths work from any route (e.g. /projecten, /diensten/slug)
+function normalizeSrc(src: string) {
+  if (!src) return src;
+  const s = src.trim();
+  if (s.startsWith("http://") || s.startsWith("https://")) return s;
+  if (s.startsWith("/")) return s;
+  return `/${s}`;
+}
+
 export default function Gallery() {
   const { t } = useI18n();
 
@@ -32,8 +41,10 @@ export default function Gallery() {
   const pathname = usePathname();
   const params = useSearchParams();
 
-  // URL param uses categoryKey now
-  const catFromUrl = decodeURIComponent(params.get("cat") || "") as CategoryKey;
+  // IMPORTANT:
+  // URLSearchParams.get() already returns decoded values.
+  // Do NOT decodeURIComponent here; it can throw on malformed sequences.
+  const catFromUrl = (params.get("cat") || "") as CategoryKey;
   const initialCat: CatFilter = PROJECT_CATEGORIES.includes(catFromUrl) ? catFromUrl : ALL;
 
   const [category, setCategory] = useState<CatFilter>(initialCat);
@@ -43,7 +54,7 @@ export default function Gallery() {
   useEffect(() => {
     const next = new URLSearchParams(params.toString());
     if (category === ALL) next.delete("cat");
-    else next.set("cat", encodeURIComponent(category));
+    else next.set("cat", category); // no encodeURIComponent; URLSearchParams will encode safely
     router.replace(`${pathname}?${next.toString()}`, { scroll: false });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [category]);
@@ -56,7 +67,7 @@ export default function Gallery() {
           projectId: p.id,
           titleKey: p.titleKey,
           categoryKey: p.categoryKey,
-          src,
+          src: normalizeSrc(src),
           idxInAlbum: idx,
         })
       );
@@ -97,7 +108,7 @@ export default function Gallery() {
   // swipe (when zoom=1)
   const swipeStart = useRef<{ x: number; y: number; t: number } | null>(null);
 
-  // viewport ref (fullscreen)
+  // used to limit pan at zoom>1
   const boxRef = useRef<HTMLDivElement>(null);
 
   function resetTransform() {
@@ -175,7 +186,7 @@ export default function Gallery() {
     });
   }
 
-  // Mouse pan
+  // Mouse pan (only when zoomed)
   function onMouseDown(e: React.MouseEvent) {
     if (zoom === 1) return;
     dragging.current = true;
@@ -191,8 +202,14 @@ export default function Gallery() {
   function onMouseUp() {
     dragging.current = false;
   }
+
+  // Only zoom with wheel when already zoomed in.
+  // Otherwise allow normal scroll to view tall images.
   function onWheel(e: React.WheelEvent) {
     if (!open) return;
+    if (zoom === 1) return;
+
+    e.preventDefault();
     const delta = -e.deltaY * 0.0015;
     setZoom((z) => {
       const nz = clamp(z + delta, 1, 4);
@@ -258,8 +275,9 @@ export default function Gallery() {
       return;
     }
 
-    // drag when zoomed
+    // drag when zoomed; when zoom===1, allow native vertical scroll
     if (!dragging.current || e.touches.length !== 1 || zoom === 1) return;
+
     e.preventDefault();
     const tt = e.touches[0];
     const dx = tt.clientX - lastPos.current.x;
@@ -272,7 +290,7 @@ export default function Gallery() {
     dragging.current = false;
     pinchStartDist.current = null;
 
-    // swipe navigation only when zoom=1
+    // swipe nav only when zoom=1
     if (zoom === 1 && swipeStart.current) {
       const start = swipeStart.current;
       const endT = Date.now() - start.t;
@@ -360,10 +378,12 @@ export default function Gallery() {
         </div>
       </div>
 
+      {/* SCROLLABLE LIGHTBOX */}
       {open && filtered.length > 0 && (
         <div
-          className="fixed inset-0 z-50 bg-black"
-          style={{ touchAction: "none" }}
+          className="fixed inset-0 z-[9999] bg-black overflow-y-auto"
+          style={{ touchAction: zoom === 1 ? "pan-y" : "none" }}
+          onClick={close}
           onWheel={onWheel}
           onDoubleClick={toggleZoom}
           onTouchStart={onTouchStart}
@@ -373,10 +393,10 @@ export default function Gallery() {
           onMouseMove={onMouseMove}
           onMouseUp={onMouseUp}
         >
-          {/* top bar */}
+          {/* sticky top bar */}
           <div
             className={cx(
-              "absolute left-0 right-0 top-0 z-20 p-3 flex items-center justify-between text-white transition-opacity",
+              "sticky top-0 z-20 p-3 flex items-center justify-between text-white transition-opacity bg-black/70 backdrop-blur",
               showUI ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             )}
             onClick={(e) => e.stopPropagation()}
@@ -418,16 +438,19 @@ export default function Gallery() {
             </div>
           </div>
 
-          {/* viewport + image */}
+          {/* scrollable viewport */}
           <div
             ref={boxRef}
-            className="absolute inset-0 flex items-center justify-center"
-            onClick={() => setShowUI((v) => !v)} // toggle chrome
+            className="px-4 py-6 md:px-10 flex justify-center"
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowUI((v) => !v);
+            }}
           >
             <img
               src={filtered[index].src}
               alt={t(filtered[index].titleKey)}
-              className="select-none w-full h-full object-contain"
+              className="select-none w-full h-auto max-w-[1200px]"
               draggable={false}
               style={
                 zoom === 1
@@ -442,10 +465,9 @@ export default function Gallery() {
             />
           </div>
 
-          {/* bottom gradient hint */}
           <div
             className={cx(
-              "pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent transition-opacity",
+              "pointer-events-none fixed inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/60 to-transparent transition-opacity",
               showUI ? "opacity-100" : "opacity-0"
             )}
           />
