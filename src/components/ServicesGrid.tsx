@@ -20,10 +20,12 @@ export default function ServicesGrid() {
         </div>
 
         <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((svc) => (
-            <article
+            {services.slice(0, 9).map((svc) => (
+            <Link
               key={svc.slug}
-              className="rounded-xl overflow-hidden border border-black/10 bg-white group"
+              href={`/diensten/${svc.slug}`}
+              className="group rounded-xl overflow-hidden border border-black/10 bg-white block focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze"
+              aria-label={t(svc.titleKey)}
             >
               <div className="relative h-44">
                 <Image
@@ -38,16 +40,11 @@ export default function ServicesGrid() {
                 <h3 className="text-lg font-bold">{t(svc.titleKey)}</h3>
                 <p className="mt-2 text-sm opacity-80 line-clamp-3">{t(svc.excerptKey)}</p>
 
-                <div className="mt-4">
-                  <Link
-                    href={`/diensten/${svc.slug}`}
-                    className="inline-flex items-center gap-1 font-semibold text-bronze"
-                  >
-                    {t("read_more")} →
-                  </Link>
+                <div className="mt-4 inline-flex items-center gap-1 font-semibold text-bronze">
+                  {t("read_more")} →
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
 
