@@ -13,8 +13,8 @@ function cx(...cls: (string | false | null | undefined)[]) {
 export default function Navbar() {
   const { t } = useI18n();
 
-  const [open, setOpen] = useState(false); // mobile drawer
-  const [dienstenOpen, setDienstenOpen] = useState(false); // desktop dropdown
+  const [open, setOpen] = useState(false);
+  const [dienstenOpen, setDienstenOpen] = useState(false);
   const path = usePathname();
 
   const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -41,34 +41,34 @@ export default function Navbar() {
     if (e.key === "Escape") setDienstenOpen(false);
   }
 
-  function hardGoHome(e: React.MouseEvent) {
-    e.preventDefault();
-    window.location.href = "/";
-  }
-
   const left = services.slice(0, Math.ceil(services.length / 2));
   const right = services.slice(Math.ceil(services.length / 2));
 
   return (
     <header className="sticky top-0 z-40 bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-black/5">
-      <div className="mx-auto max-w-7xl px-4 h-16 flex items-center justify-between">
-        {/* Logo (hard refresh) */}
-        <div className="flex items-center gap-3">
-          <Link href="/" aria-label="Klusdam homepage" className="flex items-center" onClick={hardGoHome}>
-            <img
-              src="https://i.ibb.co/Z1hM3YWs/final-1.png"
-              alt="Klusdam logo"
-              className="h-full max-h-14 w-auto object-contain opacity-90"
-            />
-          </Link>
-        </div>
+      <div className="mx-auto max-w-7xl px-4 h-16 flex items-center gap-4">
+        {/* Logo (force full refresh) */}
+        <a href="/" aria-label="Klusdam homepage" className="flex items-center shrink-0">
+          <img
+            src="https://i.ibb.co/Z1hM3YWs/final-1.png"
+            alt="Klusdam logo"
+            className="h-full max-h-14 w-auto object-contain opacity-90"
+          />
+        </a>
 
-        {/* Desktop nav: centered links + CTA on far right */}
-        <div className="hidden md:flex flex-1 items-center">
-          <nav className="mx-auto flex items-center gap-2">
-            <NavLink href="/" active={path === "/"} onClick={hardGoHome}>
+        {/* Desktop nav + CTA aligned to the right */}
+        <div className="hidden md:flex items-center gap-3 ml-auto">
+          <nav className="flex items-center gap-2">
+            {/* Home (force full refresh) */}
+            <a
+              href="/"
+              className={cx(
+                "px-3 py-2 rounded-lg font-semibold hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze",
+                path === "/" && "text-bronze"
+              )}
+            >
               {t("home")}
-            </NavLink>
+            </a>
 
             {/* Diensten */}
             <div className="relative" onMouseEnter={openWithIntent} onMouseLeave={closeWithIntent}>
@@ -78,7 +78,7 @@ export default function Navbar() {
                 aria-haspopup="true"
                 aria-expanded={dienstenOpen}
                 className={cx(
-                  "px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
+                  "px-3 py-2 rounded-lg font-semibold hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze",
                   path?.startsWith("/diensten") && "text-bronze"
                 )}
               >
@@ -87,7 +87,7 @@ export default function Navbar() {
 
               {dienstenOpen && (
                 <div
-                  className="absolute left-0 mt-2 w-[560px] rounded-xl shadow-xl bg-white border border-black/10 p-4 grid grid-cols-2 gap-2"
+                  className="absolute right-0 mt-2 w-[560px] rounded-xl shadow-xl bg-white border border-black/10 p-4 grid grid-cols-2 gap-2"
                   onMouseLeave={closeWithIntent}
                   role="menu"
                 >
@@ -130,22 +130,15 @@ export default function Navbar() {
               {t("over")}
             </NavLink>
 
-            {/* Projecten removed */}
-            {/*
-            <NavLink href="/projecten" active={path === "/projecten"}>
-              {t("projecten")}
-            </NavLink>
-            */}
-
             <NavLink href="/contact" active={path === "/contact"}>
               {t("contact")}
             </NavLink>
           </nav>
 
-          {/* CTA on the very right */}
+          {/* CTA (far right) */}
           <Link
             href="/contact"
-            className="ml-auto inline-flex items-center rounded-lg bg-bronze text-charcoal px-4 py-2 font-semibold hover:opacity-90"
+            className="bg-bronze text-charcoal px-4 py-2 rounded-lg font-semibold hover:opacity-90 whitespace-nowrap"
           >
             {t("cta_quote")}
           </Link>
@@ -153,7 +146,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden inline-flex items-center justify-center rounded-lg p-3 ring-1 ring-black/10"
+          className="md:hidden ml-auto inline-flex items-center justify-center rounded-lg p-3 ring-1 ring-black/10"
           aria-label={t("open_menu")}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
@@ -166,63 +159,74 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer (scrollable) */}
       {open && (
         <div className="md:hidden border-t border-black/10 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-3">
-            <MobileLink href="/" onClick={() => setOpen(false)} active={path === "/"}>
+          <div className="mx-auto max-w-7xl px-4 py-3 max-h-[80vh] overflow-y-auto">
+            {/* Home (force refresh) */}
+            <a
+              href="/"
+              onClick={() => setOpen(false)}
+              className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", path === "/" && "text-bronze")}
+            >
               {t("home")}
-            </MobileLink>
+            </a>
 
-            <details className="group">
+            {/* Diensten accordion */}
+            <details className="group" open>
               <summary className="cursor-pointer select-none px-3 py-2 font-semibold rounded-lg hover:bg-black/5 flex items-center justify-between">
                 <span className={cx(path?.startsWith("/diensten") && "text-bronze")}>{t("diensten")}</span>
                 <span className="transition-transform group-open:rotate-180">▾</span>
               </summary>
 
-              <div className="pl-2">
+              <div className="pl-2 max-h-[50vh] overflow-y-auto pr-1">
                 {services.map((s) => (
-                  <MobileLink
+                  <Link
                     key={s.slug}
                     href={`/diensten/${s.slug}`}
                     onClick={() => setOpen(false)}
-                    active={path === `/diensten/${s.slug}`}
+                    className={cx(
+                      "block px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
+                      path === `/diensten/${s.slug}` && "text-bronze"
+                    )}
                   >
                     {t(s.titleKey)}
-                  </MobileLink>
+                  </Link>
                 ))}
 
-                <MobileLink href="/diensten" onClick={() => setOpen(false)} active={path === "/diensten"}>
+                <Link
+                  href="/diensten"
+                  onClick={() => setOpen(false)}
+                  className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", path === "/diensten" && "text-bronze")}
+                >
                   {t("all_services")} →
-                </MobileLink>
+                </Link>
               </div>
             </details>
 
-            <MobileLink href="/over-ons" onClick={() => setOpen(false)} active={path === "/over-ons"}>
+            <Link
+              href="/over-ons"
+              onClick={() => setOpen(false)}
+              className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", path === "/over-ons" && "text-bronze")}
+            >
               {t("over")}
-            </MobileLink>
+            </Link>
 
-            {/* Projecten removed */}
-            {/*
-            <MobileLink href="/projecten" onClick={() => setOpen(false)} active={path === "/projecten"}>
-              {t("projecten")}
-            </MobileLink>
-            */}
-
-            <MobileLink href="/contact" onClick={() => setOpen(false)} active={path === "/contact"}>
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", path === "/contact" && "text-bronze")}
+            >
               {t("contact")}
-            </MobileLink>
+            </Link>
 
-            {/* Mobile CTA */}
-            <div className="mt-3">
-              <Link
-                href="/contact"
-                onClick={() => setOpen(false)}
-                className="w-full inline-flex items-center justify-center rounded-lg bg-bronze text-charcoal px-4 py-2 font-semibold hover:opacity-90"
-              >
-                {t("cta_quote")}
-              </Link>
-            </div>
+            <Link
+              href="/contact"
+              onClick={() => setOpen(false)}
+              className="mt-2 block bg-bronze text-charcoal px-4 py-2 rounded-lg font-semibold text-center hover:opacity-90"
+            >
+              {t("cta_quote")}
+            </Link>
           </div>
         </div>
       )}
@@ -234,43 +238,18 @@ function NavLink({
   href,
   active,
   children,
-  onClick,
 }: {
   href: string;
   active?: boolean;
   children: React.ReactNode;
-  onClick?: (e: React.MouseEvent) => void;
 }) {
   return (
     <Link
       href={href}
-      onClick={onClick}
       className={cx(
         "px-3 py-2 rounded-lg font-semibold hover:bg-black/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-bronze",
         active && "text-bronze"
       )}
-    >
-      {children}
-    </Link>
-  );
-}
-
-function MobileLink({
-  href,
-  active,
-  children,
-  onClick,
-}: {
-  href: string;
-  active?: boolean;
-  children: React.ReactNode;
-  onClick?: () => void;
-}) {
-  return (
-    <Link
-      href={href}
-      onClick={onClick}
-      className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", active && "text-bronze")}
     >
       {children}
     </Link>
