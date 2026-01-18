@@ -137,8 +137,17 @@ export const services: Service[] = [
       "svc_b_vloerverwarming_3",
       "svc_b_vloerverwarming_4",
     ],
-    img: "https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop",
-    images: ["https://images.unsplash.com/photo-1615873968403-89e068629265?q=80&w=1600&auto=format&fit=crop"],
+    img: "https://i.ibb.co/r8q6MkJ/Vario-Komp-droogbouw-vloerverwarming.jpg",
+    images: ["https://i.ibb.co/7Jh5PTGX/7.jpg",
+"https://i.ibb.co/fVj3zJNz/11.jpg",
+"https://i.ibb.co/j9S9y5nX/Adobe-Stock-307645879-scaled.jpg",
+"https://i.ibb.co/BKLwrkS0/c754861a-597b-4fdb-a986-6d3ba1bba73f.jpg",
+"https://i.ibb.co/JwyNQpmT/download.jpg",
+"https://i.ibb.co/Gvs1ydsF/hoe-werkt-vloerverwarming.jpg",
+"https://i.ibb.co/ksLQ09kh/Infrezen-vloerverwarming-Fermacell.jpg",
+"https://i.ibb.co/gFjjk17P/stofvrij-infrezen-e1747642097853.jpg",
+"https://i.ibb.co/r8q6MkJ/Vario-Komp-droogbouw-vloerverwarming.jpg",
+"https://i.ibb.co/cc4hgvry/Vloerverwarming-leggen.jpg",]
   },
 
   {
@@ -206,8 +215,20 @@ export const services: Service[] = [
     titleKey: "svc_title_raam_deur",
     excerptKey: "svc_excerpt_raam_deur",
     bulletsKeys: ["svc_b_raam_deur_1", "svc_b_raam_deur_2", "svc_b_raam_deur_3", "svc_b_raam_deur_4"],
-    img: "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=1600&auto=format&fit=crop",
-    images: [],
+    img: "https://i.ibb.co/CN8Dtqw/hoofd-raam-en-deurmontage.jpg",
+    images: [
+
+      "https://i.ibb.co/sxQpwd2/0j88k6ddqb8b1.jpg",
+"https://i.ibb.co/CsSMJZZB/111459.jpg",
+"https://i.ibb.co/35QfxSx9/111461.jpg",
+"https://i.ibb.co/JFxhvZq0/233740.jpg",
+"https://i.ibb.co/gZF55Ygb/deuren-voordeuren-2.jpg",
+"https://i.ibb.co/0RWsScN6/ey-Jid-WNr-ZXQi-Oi-Ji-ZW5pd-GVja-C0y-MDIz-Iiwia2-V5-Ijoib-WVka-WEv-UHJv-ZHVjd-GVu-L09w-ZW5zb-GFhbm-Rl.png",
+"https://i.ibb.co/Zp0211Sn/Foto-1-Dictator-0001-1024x683.jpg",
+"https://i.ibb.co/jk0QqxMc/holzhaustuer-01.jpg",
+"https://i.ibb.co/CN8Dtqw/hoofd-raam-en-deurmontage.jpg",
+"https://i.ibb.co/Fk0YGDNJ/Openslaande-deuren-tuin-zijlichten-kunststof-1024x768.jpg",
+    ],
   },
 
   {
@@ -215,8 +236,16 @@ export const services: Service[] = [
     titleKey: "svc_title_keuken",
     excerptKey: "svc_excerpt_keuken",
     bulletsKeys: ["svc_b_keuken_1", "svc_b_keuken_2", "svc_b_keuken_3", "svc_b_keuken_4"],
-    img: "https://images.unsplash.com/photo-1556912167-f556f1f39df1?q=80&w=1600&auto=format&fit=crop",
-    images: [],
+    img: "https://i.ibb.co/qLF2gn1x/download-5.jpg",
+    images: [
+
+      "https://i.ibb.co/jknLm85R/download-1.jpg",
+"https://i.ibb.co/vxsQxqqJ/download-2.jpg",
+"https://i.ibb.co/whC7w7jN/download-3.jpg",
+"https://i.ibb.co/rGRz6XCp/download-4.jpg",
+"https://i.ibb.co/qLF2gn1x/download-5.jpg",
+"https://i.ibb.co/bg6PNd6j/download.jpg",
+    ],
   },
 
   {
@@ -224,8 +253,20 @@ export const services: Service[] = [
     titleKey: "svc_title_tuinmuur",
     excerptKey: "svc_excerpt_tuinmuur",
     bulletsKeys: ["svc_b_tuinmuur_1", "svc_b_tuinmuur_2", "svc_b_tuinmuur_3", "svc_b_tuinmuur_4"],
-    img: "https://images.unsplash.com/photo-1595433707802-3c92bda4f7a4?q=80&w=1600&auto=format&fit=crop",
-    images: [],
+    img: "https://i.ibb.co/wZS6Fxmm/download-3.jpg",
+    images: [
+
+"https://i.ibb.co/LdPPxLq3/Berton-paal-IJssel-antraciet-eindmodel-308-Tuindeco.jpg",
+"https://i.ibb.co/99Lc5Y12/download-1.jpg",
+"https://i.ibb.co/tPK1J3Ny/download-2.jpg",
+"https://i.ibb.co/wZS6Fxmm/download-3.jpg",
+"https://i.ibb.co/FvkMSWs/download-4.jpg",
+"https://i.ibb.co/XrChpZYC/download.jpg",
+"https://i.ibb.co/JRsxjs5n/Elemes-betonker-t-s-otthonfel-j-t-si-t-mogat-ssal.jpg",
+"https://i.ibb.co/k2gQhb04/Ook-in-Balk-hebben-we-verschillende-beton-schuttingen-neergezet-Dit-is-een-voorbeeld-van-een-betons.jpg",
+"https://i.ibb.co/tw1jpq79/Realisaties.jpg",
+"https://i.ibb.co/Kc5SnQLb/Rustique.jpg",
+    ],
   },
 
   {
@@ -233,8 +274,20 @@ export const services: Service[] = [
     titleKey: "svc_title_kasten",
     excerptKey: "svc_excerpt_kasten",
     bulletsKeys: ["svc_b_kasten_1", "svc_b_kasten_2", "svc_b_kasten_3", "svc_b_kasten_4"],
-    img: "https://images.unsplash.com/photo-1598300053545-d2b42bba0b88?q=80&w=1600&auto=format&fit=crop",
-    images: [],
+    img: "https://i.ibb.co/wrdQ9nnf/Hoofd-Op-maat-kastbouwen-jpg.webp",
+    images: [
+      "https://i.ibb.co/tPmbGhXk/64da34c8c30f30ecaee11e63-schuifdeurkast-op-maat-gemaakt.jpg",
+"https://i.ibb.co/wrdQ9nnf/Hoofd-Op-maat-kastbouwen-jpg.webp",
+"https://i.ibb.co/K4vVtNZ/image-php.jpg",
+"https://i.ibb.co/ZRhnCDzL/inbouwkast-met-schuifdeuren-q3zoe4kmr050o27o9g9s4bp49nhdhpyxvid1q4j4w8.png",
+"https://i.ibb.co/NgDKdTxM/kasten-op-maat.webp",
+"https://i.ibb.co/FbNTNTjV/kasten-op-maat-laten-maken.jpg",
+"https://i.ibb.co/pB65nbB2/Kast-op-maat-laten-maken-2.jpg",
+"https://i.ibb.co/0k9SDs3/kledingkast-op-zolder-onder-een-schuin-dak.jpg",
+"https://i.ibb.co/JWn1QntW/large-spuitwerk-kast-landelijke-hoekkast-4b5f0cf930.webp",
+"https://i.ibb.co/bMpSz5wY/moebel-planen-schrank-flur-weiss-buttler-korr-hq.jpg",
+"https://i.ibb.co/dJcLXZkb/zwarte-paneel-schuifdeuren-op-maat-webp.jpg",
+    ],
   },
 
   {
@@ -257,8 +310,19 @@ export const services: Service[] = [
     titleKey: "svc_title_elektriciteit",
     excerptKey: "svc_excerpt_elektriciteit",
     bulletsKeys: ["svc_b_elektriciteit_1", "svc_b_elektriciteit_2", "svc_b_elektriciteit_3", "svc_b_elektriciteit_4"],
-    img: "https://images.unsplash.com/photo-1581090700227-1e37b190418e?q=80&w=1600&auto=format&fit=crop",
-    images: [],
+    img: "https://i.ibb.co/HDKyy9TK/hoofd-Elektriciteit.jpg",
+    images: [
+      "https://i.ibb.co/TD41zGzB/image.jpg",
+      "https://i.ibb.co/Nnx39t83/2.jpg",
+      "https://i.ibb.co/XrJ9mc8h/3.jpg",
+      "https://i.ibb.co/99Lfc2q4/4.jpg",
+      "https://i.ibb.co/yBh53tTH/depositphotos-22834592-stock-photo-hand-of-an-electrician.webp",
+      "https://i.ibb.co/ksJv0tPD/depositphotos-272301270-stock-photo-hands-of-an-electrician-electrician.webp",
+      "https://i.ibb.co/HDKyy9TK/hoofd-Elektriciteit.jpg",
+      "https://i.ibb.co/0yZ5zCVz/Veilig-werken-met-elektriciteit-Stratt-01.jpg",
+      "https://i.ibb.co/8DSvJB5m/Zelf-elektriciteit-leggen-klus-vol-vertrouwen-met-hulp-van-experts.jpg",
+      "https://i.ibb.co/SXW9Gkgr/zelf-elektriciteit-plaatsen.jpg",
+    ]
   },
 
   {
@@ -266,7 +330,7 @@ export const services: Service[] = [
     titleKey: "svc_title_trap",
     excerptKey: "svc_excerpt_trap",
     bulletsKeys: ["svc_b_trap_1", "svc_b_trap_2", "svc_b_trap_3", "svc_b_trap_4"],
-    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1600&auto=format&fit=crop",
+    img: "https://i.ibb.co/9M5YVQK/hoofd-Traprenovatie.jpg",
     images: [
       "https://i.ibb.co/j9D7dVNk/2.jpg",
       "https://i.ibb.co/mV03bNvh/Chique-hal-Den-Breejen-Interieur.jpg",
