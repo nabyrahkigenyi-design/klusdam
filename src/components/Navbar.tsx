@@ -159,74 +159,90 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile drawer (scrollable) */}
+      {/* Mobile drawer */}
       {open && (
         <div className="md:hidden border-t border-black/10 bg-white">
+          {/* IMPORTANT: make the whole drawer a LEFT-aligned column (no centering) */}
           <div className="mx-auto max-w-7xl px-4 py-3 max-h-[80vh] overflow-y-auto">
-            {/* Home (force refresh) */}
-            <a
-              href="/"
-              onClick={() => setOpen(false)}
-              className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", path === "/" && "text-bronze")}
-            >
-              {t("home")}
-            </a>
+            <nav className="flex flex-col items-stretch gap-1">
+              {/* Home (force refresh) */}
+              <a
+                href="/"
+                onClick={() => setOpen(false)}
+                className={cx(
+                  "w-full text-left px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
+                  path === "/" && "text-bronze"
+                )}
+              >
+                {t("home")}
+              </a>
 
-            {/* Diensten accordion */}
-            <details className="group" open>
-              <summary className="cursor-pointer select-none px-3 py-2 font-semibold rounded-lg hover:bg-black/5 flex items-center justify-between">
-                <span className={cx(path?.startsWith("/diensten") && "text-bronze")}>{t("diensten")}</span>
-                <span className="transition-transform group-open:rotate-180">▾</span>
-              </summary>
+              {/* Diensten accordion (LEFT aligned, scrollable list inside) */}
+              <details className="group w-full" open>
+                <summary className="w-full cursor-pointer select-none px-3 py-2 font-semibold rounded-lg hover:bg-black/5 flex items-center justify-between">
+                  <span className={cx(path?.startsWith("/diensten") && "text-bronze")}>{t("diensten")}</span>
+                  <span className="transition-transform group-open:rotate-180">▾</span>
+                </summary>
 
-              <div className="pl-2 max-h-[50vh] overflow-y-auto pr-1">
-                {services.map((s) => (
+                <div className="pl-2 pr-1 max-h-[45vh] overflow-y-auto">
+                  {services.map((s) => (
+                    <Link
+                      key={s.slug}
+                      href={`/diensten/${s.slug}`}
+                      onClick={() => setOpen(false)}
+                      className={cx(
+                        "block w-full text-left px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
+                        path === `/diensten/${s.slug}` && "text-bronze"
+                      )}
+                    >
+                      {t(s.titleKey)}
+                    </Link>
+                  ))}
+
                   <Link
-                    key={s.slug}
-                    href={`/diensten/${s.slug}`}
+                    href="/diensten"
                     onClick={() => setOpen(false)}
                     className={cx(
-                      "block px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
-                      path === `/diensten/${s.slug}` && "text-bronze"
+                      "block w-full text-left px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
+                      path === "/diensten" && "text-bronze"
                     )}
                   >
-                    {t(s.titleKey)}
+                    {t("all_services")} →
                   </Link>
-                ))}
+                </div>
+              </details>
 
-                <Link
-                  href="/diensten"
-                  onClick={() => setOpen(false)}
-                  className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", path === "/diensten" && "text-bronze")}
-                >
-                  {t("all_services")} →
-                </Link>
-              </div>
-            </details>
+              <Link
+                href="/over-ons"
+                onClick={() => setOpen(false)}
+                className={cx(
+                  "block w-full text-left px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
+                  path === "/over-ons" && "text-bronze"
+                )}
+              >
+                {t("over")}
+              </Link>
 
-            <Link
-              href="/over-ons"
-              onClick={() => setOpen(false)}
-              className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", path === "/over-ons" && "text-bronze")}
-            >
-              {t("over")}
-            </Link>
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className={cx(
+                  "block w-full text-left px-3 py-2 rounded-lg font-semibold hover:bg-black/5",
+                  path === "/contact" && "text-bronze"
+                )}
+              >
+                {t("contact")}
+              </Link>
 
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className={cx("block px-3 py-2 rounded-lg font-semibold hover:bg-black/5", path === "/contact" && "text-bronze")}
-            >
-              {t("contact")}
-            </Link>
-
-            <Link
-              href="/contact"
-              onClick={() => setOpen(false)}
-              className="mt-2 block bg-bronze text-charcoal px-4 py-2 rounded-lg font-semibold text-center hover:opacity-90"
-            >
-              {t("cta_quote")}
-            </Link>
+              {/* CTA (still full width, but NOT centered text) */}
+              <Link
+                href="/contact"
+                onClick={() => setOpen(false)}
+                className="mt-2 w-full bg-bronze text-charcoal px-4 py-2 rounded-lg font-semibold text-left hover:opacity-90"
+              >
+                {t("cta_quote")}
+              </Link>
+            </nav>
           </div>
         </div>
       )}
