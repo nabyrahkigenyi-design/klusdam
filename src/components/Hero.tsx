@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="relative" data-reveal>
       <div className="absolute inset-0 -z-10">
         <Image
-          src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1920&auto=format&fit=crop"
+          src="https://i.ibb.co/4gTncr4N/20240515-121050.jpg"
           alt="Bouwplaats"
           fill
           className="object-cover"

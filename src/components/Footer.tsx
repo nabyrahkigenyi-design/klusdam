@@ -3,6 +3,7 @@
 import Link from "next/link";
 import SocialLinks from "./SocialLinks";
 import { useI18n } from "@/lib/i18n";
+import { services } from "@/lib/services";
 
 function IconPhone(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -28,99 +29,172 @@ function IconPin(props: React.SVGProps<SVGSVGElement>) {
   );
 }
 
+function cx(...cls: (string | false | null | undefined)[]) {
+  return cls.filter(Boolean).join(" ");
+}
+
 export default function Footer() {
   const { t } = useI18n();
   const year = new Date().getFullYear();
 
+  // Split services into 2 columns (balanced)
+  const mid = Math.ceil(services.length / 2);
+  const left = services.slice(0, mid);
+  const right = services.slice(mid);
+
   return (
-    <footer className="relative bg-charcoal text-white footer-pattern overflow-hidden" data-reveal>
-      {/* subtle glow */}
+    <footer className="relative bg-charcoal text-white overflow-hidden footer-pattern" data-reveal>
+      {/* soft background glows */}
       <div className="pointer-events-none absolute inset-0 opacity-40">
-        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-bronze/20 blur-3xl" />
-        <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+        <div className="absolute -top-24 -left-24 h-80 w-80 rounded-full bg-bronze/20 blur-3xl" />
+        <div className="absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 py-12 grid md:grid-cols-4 gap-8">
-        {/* Logo + intro */}
-        <div className="flex flex-col gap-3">
-          <Link href="/" aria-label="Klusdam homepage" className="flex items-center">
-            <img
-              src="https://i.ibb.co/CpJPTBch/for-footer-2-1.png"
-              alt="Klusdam logo"
-              className="h-full max-h-14 w-auto object-contain opacity-90"
-            />
-          </Link>
+      <div className="relative mx-auto max-w-7xl px-4 py-12">
+        {/* Top grid */}
+        <div className="grid gap-10 md:grid-cols-12">
+          {/* Brand */}
+          <div className="md:col-span-4">
+            <Link href="/" aria-label="Klusdam homepage" className="inline-flex items-center">
+              <img
+                src="https://i.ibb.co/CpJPTBch/for-footer-2-1.png"
+                alt="Klusdam logo"
+                className="h-full max-h-14 w-auto object-contain opacity-90"
+              />
+            </Link>
 
-          <p className="text-sm/6 opacity-80">{t("footer_intro")}</p>
+            <p className="mt-4 text-sm/6 opacity-80 max-w-sm">{t("footer_intro")}</p>
 
-          <div className="mt-2">
-            <h4 className="font-semibold mb-2 text-sm">{t("footer_follow")}</h4>
-            <SocialLinks className="[&>*]:text-white" />
-          </div>
-        </div>
-
-        {/* Services */}
-        <div>
-          <h4 className="font-semibold mb-3">{t("diensten")}</h4>
-          <ul className="space-y-2 text-sm">
-            <li><a href="/diensten/laminaat-leggen" className="hover:text-bronze">{t("svc_laminaat")}</a></li>
-            <li><a href="/diensten/badkamer-renovatie" className="hover:text-bronze">{t("svc_badkamer")}</a></li>
-            <li><a href="/diensten/plavuizen-vloer" className="hover:text-bronze">{t("svc_gietvloer")}</a></li>
-            <li><a href="/diensten/schilder" className="hover:text-bronze">{t("svc_schilder")}</a></li>
-            <li><a href="/diensten/stukadoor" className="hover:text-bronze">{t("svc_stukadoor")}</a></li>
-            <li><a href="/diensten/tegelzetter" className="hover:text-bronze">{t("svc_tegelzetter")}</a></li>
-            <li><a href="/diensten/vloerverwarming" className="hover:text-bronze">{t("svc_vloerverwarming")}</a></li>
-            <li><a href="/diensten/wc-renovatie" className="hover:text-bronze">{t("svc_wc")}</a></li>
-            <li><a href="/diensten/timmerwerk" className="hover:text-bronze">{t("svc_timmerwerk")}</a></li>
-          </ul>
-        </div>
-
-        {/* Company */}
-        <div>
-          <h4 className="font-semibold mb-3">{t("footer_company")}</h4>
-          <ul className="space-y-2 text-sm">
-            <li><a href="/over-ons" className="hover:text-bronze">{t("over")}</a></li>
-            <li><a href="/contact" className="hover:text-bronze">{t("contact")}</a></li>
-          </ul>
-        </div>
-
-        {/* Contact */}
-        <div>
-          <h4 className="font-semibold mb-3">{t("footer_contact")}</h4>
-
-          <div className="space-y-3 text-sm">
-            <div className="flex items-start gap-2 opacity-90">
-              <IconPin className="h-4 w-4 mt-0.5 text-bronze" />
-              <div>
-                {t("footer_address_line1")}<br />
-                {t("footer_address_line2")}
+            <div className="mt-6">
+              <h4 className="text-sm font-semibold">{t("footer_follow")}</h4>
+              <div className="mt-2">
+                <SocialLinks className="[&>*]:text-white" />
               </div>
             </div>
 
-            <a href="tel:+31634099060" className="flex items-center gap-2 hover:text-bronze">
-              <IconPhone className="h-4 w-4 text-bronze" />
-              06 34099060
-            </a>
+            {/* subtle divider for mobile */}
+            <div className="mt-8 h-px bg-white/10 md:hidden" />
+          </div>
 
-            <a href="mailto:info@klusdam.nl" className="flex items-center gap-2 hover:text-bronze">
-              <IconMail className="h-4 w-4 text-bronze" />
-              info@klusdam.nl
-            </a>
+          {/* Services */}
+          <div className="md:col-span-5">
+            <div className="flex items-center justify-between">
+              <h4 className="font-semibold">{t("diensten")}</h4>
+              <Link href="/diensten" className="text-xs font-semibold text-bronze hover:opacity-90">
+                {t("all_services")} →
+              </Link>
+            </div>
+
+            <div className="mt-4 grid grid-cols-2 gap-x-8">
+              {/* left column */}
+              <ul className="space-y-2 text-sm">
+                {left.map((svc) => (
+                  <li key={svc.slug}>
+                    <Link
+                      href={`/diensten/${svc.slug}`}
+                      className="group inline-flex items-center gap-2 opacity-90 hover:opacity-100 hover:text-bronze transition"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-white/25 group-hover:bg-bronze transition" />
+                      <span className="truncate" title={t(svc.titleKey)}>
+                        {t(svc.titleKey)}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              {/* right column */}
+              <ul className="space-y-2 text-sm">
+                {right.map((svc) => (
+                  <li key={svc.slug}>
+                    <Link
+                      href={`/diensten/${svc.slug}`}
+                      className="group inline-flex items-center gap-2 opacity-90 hover:opacity-100 hover:text-bronze transition"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-white/25 group-hover:bg-bronze transition" />
+                      <span className="truncate" title={t(svc.titleKey)}>
+                        {t(svc.titleKey)}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="mt-8 h-px bg-white/10 md:hidden" />
+          </div>
+
+          {/* Company + Contact */}
+          <div className="md:col-span-3">
+            <h4 className="font-semibold">{t("footer_contact")}</h4>
+
+            <div className="mt-4 space-y-3 text-sm">
+              <div className="flex items-start gap-2 opacity-90">
+                <IconPin className="h-4 w-4 mt-0.5 text-bronze shrink-0" />
+                <div>
+                  {t("footer_address_line1")}
+                  <br />
+                  {t("footer_address_line2")}
+                </div>
+              </div>
+
+              <a href="tel:+31634099060" className="flex items-center gap-2 opacity-90 hover:text-bronze transition">
+                <IconPhone className="h-4 w-4 text-bronze shrink-0" />
+                06 34099060
+              </a>
+
+              <a href="mailto:info@klusdam.nl" className="flex items-center gap-2 opacity-90 hover:text-bronze transition">
+                <IconMail className="h-4 w-4 text-bronze shrink-0" />
+                info@klusdam.nl
+              </a>
+            </div>
+
+            <div className="mt-6 h-px bg-white/10" />
+
+            <h4 className="mt-6 font-semibold">{t("footer_company")}</h4>
+            <ul className="mt-3 space-y-2 text-sm">
+              <li>
+                <Link href="/over-ons" className="opacity-90 hover:opacity-100 hover:text-bronze transition">
+                  {t("over")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="opacity-90 hover:opacity-100 hover:text-bronze transition">
+                  {t("contact")}
+                </Link>
+              </li>
+            </ul>
+
+            {/* quick CTA */}
+            <Link
+              href="/contact#offerte"
+              className={cx(
+                "mt-6 inline-flex w-full items-center justify-center rounded-lg",
+                "bg-bronze text-charcoal px-4 py-2 font-semibold hover:opacity-90 transition"
+              )}
+            >
+              {t("cta_quote")}
+            </Link>
           </div>
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/10 text-xs px-4 py-4 text-center opacity-80">
-        © {year} {t("footer_rights")}{" "}
-        <a
-          href="https://iflammdesigns.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="underline underline-offset-4 hover:text-bronze"
-        >
-          IFLAMM DESIGNS
-        </a>
+      <div className="relative border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 py-4 flex flex-col sm:flex-row gap-2 items-center justify-between text-xs opacity-80">
+          <div>
+            © {year} {t("footer_rights")}
+          </div>
+
+          <a
+            href="https://iflammdesigns.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline underline-offset-4 hover:text-bronze transition"
+          >
+            IFLAMM DESIGNS
+          </a>
+        </div>
       </div>
     </footer>
   );

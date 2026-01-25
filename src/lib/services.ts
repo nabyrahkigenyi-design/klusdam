@@ -44,9 +44,9 @@ export const services: Service[] = [
 "https://i.ibb.co/bkx4mkv/badkamer-renovatie.jpg",
 "https://i.ibb.co/mKggdxP/badkamer-renovatie.jpg",
 "https://i.ibb.co/twnxyNjr/badkamer-renoveren-home.jpg",
-"https://i.ibb.co/BHwB3r2d/ff.jpg",
-"https://i.ibb.co/d4JbVNtH/hoofd-badkamer-renoveren-tips-prijzen.jpg",
-"https://i.ibb.co/JgrrRKn/sdfc.jpg",
+"https://i.ibb.co/gG1gwSy/complete-badkamer-travertin-retreat-travertin-tegels.webp",
+"https://i.ibb.co/pjVqS459/terrazzo-tegels-badkamer.webp",
+
     ],
   },
 
@@ -244,7 +244,6 @@ export const services: Service[] = [
 "https://i.ibb.co/wZS6Fxmm/download-3.jpg",
 "https://i.ibb.co/FvkMSWs/download-4.jpg",
 "https://i.ibb.co/XrChpZYC/download.jpg",
-"https://i.ibb.co/JRsxjs5n/Elemes-betonker-t-s-otthonfel-j-t-si-t-mogat-ssal.jpg",
 "https://i.ibb.co/k2gQhb04/Ook-in-Balk-hebben-we-verschillende-beton-schuttingen-neergezet-Dit-is-een-voorbeeld-van-een-betons.jpg",
 "https://i.ibb.co/tw1jpq79/Realisaties.jpg",
 "https://i.ibb.co/Kc5SnQLb/Rustique.jpg",
@@ -300,7 +299,6 @@ export const services: Service[] = [
 "https://i.ibb.co/pjYCKGdj/3.jpg",
 "https://i.ibb.co/S49ZCHNc/742-vacature-installatiewerkzaamheden.jpg",
 "https://i.ibb.co/CKtNx3bd/depositphotos-272301270-stock-photo-hands-of-an-electrician-electrician.webp",
-"https://i.ibb.co/nN0jnPxN/hoofd-Elektriciteit.jpg",
 "https://i.ibb.co/CKsn0dMX/Werk-als-elektricien-demt-flex-scaled.jpg",
 "https://i.ibb.co/v4VZ5p96/Zelf-elektriciteit-leggen-klus-vol-vertrouwen-met-hulp-van-experts.jpg",
     ]
@@ -330,7 +328,7 @@ export const services: Service[] = [
     img: "https://i.ibb.co/WvR12F9S/hoofd-metselwerk.webp",
     images: [
       "https://i.ibb.co/b56gqW7T/Blokverband-metselwerk.jpg",
-      "https://i.ibb.co/WvR12F9S/hoofd-metselwerk.webp",
+      "https://i.ibb.co/mr4QHRjb/Tilburg-Cobbencampus-8-jpg.webp",
       "https://i.ibb.co/8SkcPR4/Metselwerk-rond-raam.jpg",
       "https://i.ibb.co/HLfxJcxg/Moderne-jaren-30-woning.jpg",
       "https://i.ibb.co/Rp3YX4hB/Moderne-tweewoonst-B-B.jpg",
@@ -351,11 +349,10 @@ export const services: Service[] = [
     introKey: "svc_intro_dakwerk",
     img: "https://i.ibb.co/0pBms9nP/hoofd.jpg",
     images: [
-      "https://i.ibb.co/QvPqn8G4/download.jpg",
-"https://i.ibb.co/0pBms9nP/hoofd.jpg",
+      "https://i.ibb.co/5WTdgWzv/677e736873f842bb02cc0616-Woning-met-plat-dak-dakkapel.webp",
+"https://i.ibb.co/kVrzzfwS/DG39.jpg",
 "https://i.ibb.co/Fj0ny2D/IMG-20160923-WA0003.jpg",
 "https://i.ibb.co/WvCjhjsJ/Lichtstraat-Panelen-binnenzijde-52mm-stijl-1030x773.jpg",
-"https://i.ibb.co/DPT3cYs4/rhyt.jpg",
 "https://i.ibb.co/G3bVS6h2/van-Esveld-Installatie-restaurantie-dakkapellen-lekkage-4-1.jpg",
 "https://i.ibb.co/cSzNH7GM/veghel-dakreno-aug25-img3-1024x768.webp",
     ],
@@ -379,8 +376,9 @@ export const services: Service[] = [
 "https://i.ibb.co/DDf1BSqC/download.jpg",
 "https://i.ibb.co/1Jd8nmFt/Dry-wall.jpg",
 "https://i.ibb.co/7NJFr7Fk/Een-schuifdeur-plaatsen-in-een-wand-van-gipsplaten-Het-kan.jpg",
-"ttps://i.ibb.co/RkxG7dNB/Fire-Rated-Drywall-Is-It-Worth-It.jpg",
-"https://i.ibb.co/qFD2139M/hoofd.webp",
+"https://i.ibb.co/RkxG7dNB/Fire-Rated-Drywall-Is-It-Worth-It.jpg",
+"https://i.ibb.co/p7r968G/5af0109dabcc3d822413e17b27b9009c-cc-ft-960.jpg",
+"https://i.ibb.co/ccmBxVZM/226001228-P05.jpg",
     ],
   },
 
