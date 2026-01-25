@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import OverTeaser from "@/components/OverTeaser";
 import ServicesGrid from "@/components/ServicesGrid";
-import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
 import ContactInline from "@/components/ContactInline";
 import Footer from "@/components/Footer";
@@ -18,8 +17,10 @@ export default function Page() {
       <Navbar />
       <Hero />
       <OverTeaser />
-      <ServicesGrid />
-      <Projects />
+
+      {/* show only a few services on home */}
+      <ServicesGrid limit={9} />
+
       <Testimonials />
       <ContactInline />
       <Footer />
