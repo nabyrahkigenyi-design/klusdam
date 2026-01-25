@@ -337,4 +337,74 @@ export const services: Service[] = [
       "https://i.ibb.co/KBmpgk7/Mossoux-Architecten.jpg",
     ],
   },
+
+    {
+    slug: "dakwerk",
+    titleKey: "svc_title_dakwerk",
+    excerptKey: "svc_excerpt_dakwerk",
+    bulletsKeys: [
+      "svc_b_dakwerk_1",
+      "svc_b_dakwerk_2",
+      "svc_b_dakwerk_3",
+      "svc_b_dakwerk_4",
+    ],
+    introKey: "svc_intro_dakwerk",
+    img: "https://i.ibb.co/0pBms9nP/hoofd.jpg",
+    images: [
+      "https://i.ibb.co/QvPqn8G4/download.jpg",
+"https://i.ibb.co/0pBms9nP/hoofd.jpg",
+"https://i.ibb.co/Fj0ny2D/IMG-20160923-WA0003.jpg",
+"https://i.ibb.co/WvCjhjsJ/Lichtstraat-Panelen-binnenzijde-52mm-stijl-1030x773.jpg",
+"https://i.ibb.co/DPT3cYs4/rhyt.jpg",
+"https://i.ibb.co/G3bVS6h2/van-Esveld-Installatie-restaurantie-dakkapellen-lekkage-4-1.jpg",
+"https://i.ibb.co/cSzNH7GM/veghel-dakreno-aug25-img3-1024x768.webp",
+    ],
+  },
+
+  {
+    slug: "gipsplaten-plaatsen",
+    titleKey: "svc_title_gipsplaten",
+    excerptKey: "svc_excerpt_gipsplaten",
+    bulletsKeys: [
+      "svc_b_gipsplaten_1",
+      "svc_b_gipsplaten_2",
+      "svc_b_gipsplaten_3",
+      "svc_b_gipsplaten_4",
+    ],
+    introKey: "svc_intro_gipsplaten",
+    img: "https://i.ibb.co/qFD2139M/hoofd.webp",
+    images: [
+      "https://i.ibb.co/yn1b7LfZ/Cinewall-op-maat-laten-maken-cinewalls-door-afbouwbedrijf-Megaleio.jpg",
+"https://i.ibb.co/7hqZKNZ/download-1.jpg",
+"https://i.ibb.co/DDf1BSqC/download.jpg",
+"https://i.ibb.co/1Jd8nmFt/Dry-wall.jpg",
+"https://i.ibb.co/7NJFr7Fk/Een-schuifdeur-plaatsen-in-een-wand-van-gipsplaten-Het-kan.jpg",
+"ttps://i.ibb.co/RkxG7dNB/Fire-Rated-Drywall-Is-It-Worth-It.jpg",
+"https://i.ibb.co/qFD2139M/hoofd.webp",
+    ],
+  },
+
+  {
+    slug: "behangwerk",
+    titleKey: "svc_title_behang",
+    excerptKey: "svc_excerpt_behang",
+    bulletsKeys: [
+      "svc_b_behang_1",
+      "svc_b_behang_2",
+      "svc_b_behang_3",
+      "svc_b_behang_4",
+    ],
+    introKey: "svc_intro_behang",
+    img: "https://i.ibb.co/WvSfxykv/hoofd-behangwerk.jpg",
+    images: [
+      "https://i.ibb.co/Wv3ShXz7/2022-04-14160523.webp",
+"https://i.ibb.co/1J9gdNJ7/337223611.jpg",
+"https://i.ibb.co/bjVkmTk2/behanger-Lichtenvoorde-1.jpg",
+"https://i.ibb.co/xtTcV2Gn/behangwerken-restaurant-antwerpen-1024x694.jpg",
+"https://i.ibb.co/WvSfxykv/hoofd-behangwerk.jpg",
+"https://i.ibb.co/vxj43bBB/Maatwerk-behangen-in-Breda-1024x683.webp",
+"https://i.ibb.co/BHp2fFsX/otto.jpg",
+    ],
+  },
+
 ];

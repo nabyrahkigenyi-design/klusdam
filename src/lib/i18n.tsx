@@ -325,6 +325,31 @@ tag_schilder: "schilder",
 tag_timmerwerk: "timmerwerk",
 tag_trap: "trap",
 
+svc_title_dakwerk: "Dakwerk",
+svc_excerpt_dakwerk: "Reparatie en onderhoud van daken voor een waterdichte en veilige woning.",
+svc_intro_dakwerk: "Van kleine lekkages tot dakonderhoud: wij werken netjes, veilig en met duurzame materialen.",
+svc_b_dakwerk_1: "Lekkages opsporen en repareren.",
+svc_b_dakwerk_2: "Dakgoten en hemelwaterafvoer controleren en herstellen.",
+svc_b_dakwerk_3: "Dakpannen vervangen en nokvorsten herstellen.",
+svc_b_dakwerk_4: "Preventief onderhoud voor langere levensduur.",
+
+svc_title_gipsplaten: "Gipsplaten plaatsen",
+svc_excerpt_gipsplaten: "Strakke wanden en plafonds met gipsplaten, klaar voor stucwerk of schilderwerk.",
+svc_intro_gipsplaten: "Wij plaatsen gipsplaten snel en precies, met nette naden en een stevige constructie.",
+svc_b_gipsplaten_1: "Voorzetwanden en scheidingswanden plaatsen.",
+svc_b_gipsplaten_2: "Plafonds verlagen of herstellen met gipsplaten.",
+svc_b_gipsplaten_3: "Naden afwerken en voorbereiden op stuc/schilderwerk.",
+svc_b_gipsplaten_4: "Oplossingen voor isolatie en kabels/leidingen wegwerken.",
+
+svc_title_behang: "Behangwerk",
+svc_excerpt_behang: "Behangen met strak resultaat: renovlies, patroonbehang en fotobehang.",
+svc_intro_behang: "Van voorbereiding tot afwerking: wij zorgen dat het behang perfect vlak en netjes aansluit.",
+svc_b_behang_1: "Ondergrond voorbereiden: glad maken, repareren en voorstrijken.",
+svc_b_behang_2: "Renovlies en glasvlies aanbrengen voor strakke wanden.",
+svc_b_behang_3: "Patroonbehang nauwkeurig uitlijnen en plakken.",
+svc_b_behang_4: "Afwerking met nette randen, hoeken en stopcontacten.",
+
+
 
   },
 
@@ -599,6 +624,31 @@ tag_stukadoor: "plasterer",
 tag_schilder: "painter",
 tag_timmerwerk: "carpentry",
 tag_trap: "stairs",
+
+svc_title_dakwerk: "Roofing",
+svc_excerpt_dakwerk: "Roof repair and maintenance for a watertight and safe home.",
+svc_intro_dakwerk: "From small leaks to maintenance: we work cleanly, safely, and with durable materials.",
+svc_b_dakwerk_1: "Detect and repair roof leaks.",
+svc_b_dakwerk_2: "Inspect and fix gutters and rainwater drainage.",
+svc_b_dakwerk_3: "Replace roof tiles and repair ridge caps.",
+svc_b_dakwerk_4: "Preventive maintenance to extend roof life.",
+
+svc_title_gipsplaten: "Drywall installation",
+svc_excerpt_gipsplaten: "Clean walls and ceilings with drywall, ready for plastering or painting.",
+svc_intro_gipsplaten: "We install drywall fast and accurately, with neat joints and a solid structure.",
+svc_b_gipsplaten_1: "Build stud walls and partition walls.",
+svc_b_gipsplaten_2: "Lower or repair ceilings with drywall.",
+svc_b_gipsplaten_3: "Finish joints and prepare for plaster/paint.",
+svc_b_gipsplaten_4: "Solutions for insulation and hiding cables/pipes.",
+
+svc_title_behang: "Wallpapering",
+svc_excerpt_behang: "Wallpaper with a clean finish: lining paper, patterned wallpaper, and photo wallpaper.",
+svc_intro_behang: "From prep to finishing: we make sure wallpaper is smooth and perfectly aligned.",
+svc_b_behang_1: "Surface prep: smooth, repair, and prime.",
+svc_b_behang_2: "Apply lining paper for smooth walls.",
+svc_b_behang_3: "Align and install patterned wallpaper precisely.",
+svc_b_behang_4: "Neat finishing around edges, corners, and sockets.",
+
 
 
   },
@@ -875,6 +925,31 @@ tag_stukadoor: "Stuckateur",
 tag_schilder: "Maler",
 tag_timmerwerk: "Tischler",
 tag_trap: "Treppe",
+
+svc_title_dakwerk: "Dacharbeiten",
+svc_excerpt_dakwerk: "Reparatur und Wartung von Dächern für ein dichtes und sicheres Zuhause.",
+svc_intro_dakwerk: "Von kleinen Undichtigkeiten bis zur Wartung: sauber, sicher und mit langlebigen Materialien.",
+svc_b_dakwerk_1: "Undichtigkeiten finden und beheben.",
+svc_b_dakwerk_2: "Dachrinnen und Regenwasserablauf prüfen und reparieren.",
+svc_b_dakwerk_3: "Dachziegel ersetzen und First reparieren.",
+svc_b_dakwerk_4: "Vorbeugende Wartung für längere Lebensdauer.",
+
+svc_title_gipsplaten: "Trockenbau (Gipskarton)",
+svc_excerpt_gipsplaten: "Glatte Wände und Decken mit Gipskarton, bereit zum Verputzen oder Streichen.",
+svc_intro_gipsplaten: "Wir montieren Gipskarton schnell und präzise, mit sauberen Fugen und stabiler Konstruktion.",
+svc_b_gipsplaten_1: "Vorsatzschalen und Trennwände erstellen.",
+svc_b_gipsplaten_2: "Decken abhängen oder mit Gipskarton reparieren.",
+svc_b_gipsplaten_3: "Fugen spachteln und für Putz/Farbe vorbereiten.",
+svc_b_gipsplaten_4: "Lösungen für Dämmung und das Verstecken von Leitungen/Kabeln.",
+
+svc_title_behang: "Tapezierarbeiten",
+svc_excerpt_behang: "Tapezieren mit sauberem Ergebnis: Renoviervlies, Mustertapete und Fototapete.",
+svc_intro_behang: "Von der Vorbereitung bis zur Endbearbeitung: glatt, sauber und exakt ausgerichtet.",
+svc_b_behang_1: "Untergrund vorbereiten: glätten, reparieren und grundieren.",
+svc_b_behang_2: "Renoviervlies anbringen für glatte Wände.",
+svc_b_behang_3: "Mustertapete exakt ausrichten und kleben.",
+svc_b_behang_4: "Saubere Abschlüsse an Kanten, Ecken und Steckdosen.",
+
 
 
   },
@@ -1153,6 +1228,32 @@ tag_stukadoor: "plâtrier",
 tag_schilder: "peintre",
 tag_timmerwerk: "menuiserie",
 tag_trap: "escalier",
+
+
+svc_title_dakwerk: "Travaux de toiture",
+svc_excerpt_dakwerk: "Réparation et entretien de toiture pour une maison étanche et sûre.",
+svc_intro_dakwerk: "Petites fuites ou entretien: travail propre, sécurisé et matériaux durables.",
+svc_b_dakwerk_1: "Détection et réparation des fuites.",
+svc_b_dakwerk_2: "Contrôle et réparation des gouttières et évacuations.",
+svc_b_dakwerk_3: "Remplacement des tuiles et réparation du faîtage.",
+svc_b_dakwerk_4: "Entretien préventif pour prolonger la durée de vie.",
+
+svc_title_gipsplaten: "Pose de plaques de plâtre",
+svc_excerpt_gipsplaten: "Murs et plafonds nets avec plaques de plâtre, prêts à être enduits ou peints.",
+svc_intro_gipsplaten: "Pose rapide et précise, joints soignés et structure solide.",
+svc_b_gipsplaten_1: "Cloisons et doublages.",
+svc_b_gipsplaten_2: "Plafonds (création, abaissement ou réparation).",
+svc_b_gipsplaten_3: "Finition des joints et préparation pour enduit/peinture.",
+svc_b_gipsplaten_4: "Solutions pour isolation et passage de câbles/tuyaux.",
+
+svc_title_behang: "Pose de papier peint",
+svc_excerpt_behang: "Pose soignée: toile de rénovation, papier peint à motifs et papier peint photo.",
+svc_intro_behang: "De la préparation à la finition: résultat lisse et alignement parfait.",
+svc_b_behang_1: "Préparation du support: lisser, réparer et appliquer une sous-couche.",
+svc_b_behang_2: "Pose de toile de rénovation pour des murs bien lisses.",
+svc_b_behang_3: "Alignement précis des motifs.",
+svc_b_behang_4: "Finition propre des bords, angles et prises.",
+
 
 
   },
@@ -1434,6 +1535,32 @@ tag_timmerwerk: "marangozluk",
 tag_trap: "merdiven",
 
 
+svc_title_dakwerk: "Çatı işleri",
+svc_excerpt_dakwerk: "Eviniz için su geçirmez ve güvenli çatı onarım ve bakımı.",
+svc_intro_dakwerk: "Küçük sızıntılardan bakıma kadar: temiz, güvenli ve dayanıklı malzemelerle çalışırız.",
+svc_b_dakwerk_1: "Çatı sızıntısı tespiti ve onarımı.",
+svc_b_dakwerk_2: "Oluk ve yağmur suyu gideri kontrolü ve tamiri.",
+svc_b_dakwerk_3: "Kiremit değişimi ve mahya onarımı.",
+svc_b_dakwerk_4: "Ömrü uzatan önleyici bakım.",
+
+svc_title_gipsplaten: "Alçıpan montajı",
+svc_excerpt_gipsplaten: "Sıva veya boya için hazır, düzgün alçıpan duvar ve tavanlar.",
+svc_intro_gipsplaten: "Alçıpani hızlı ve düzgün monte ederiz; derzler temiz, yapı sağlam olur.",
+svc_b_gipsplaten_1: "Bölme duvar ve ön duvar yapımı.",
+svc_b_gipsplaten_2: "Tavan alçaltma veya tavan onarımı.",
+svc_b_gipsplaten_3: "Derz dolgusu ve sıva/boya hazırlığı.",
+svc_b_gipsplaten_4: "Yalıtım ve kablo/tesisat gizleme çözümleri.",
+
+svc_title_behang: "Duvar kâğıdı",
+svc_excerpt_behang: "Temiz işçilikle duvar kâğıdı: renovasyon fleksi, desenli ve fotoğraf duvar kâğıdı.",
+svc_intro_behang: "Hazırlıktan bitişe kadar: pürüzsüz yüzey ve düzgün hizalama.",
+svc_b_behang_1: "Yüzey hazırlığı: düzeltme, tamir ve astar.",
+svc_b_behang_2: "Düz duvarlar için renovasyon fleksi uygulaması.",
+svc_b_behang_3: "Desen hizalamasıyla hassas uygulama.",
+svc_b_behang_4: "Kenar, köşe ve prizlerde temiz bitiş.",
+
+
+
   },
 
   ar: {
@@ -1707,6 +1834,32 @@ tag_stukadoor: "مُليس",
 tag_schilder: "دهّان",
 tag_timmerwerk: "نجارة",
 tag_trap: "درج",
+
+
+svc_title_dakwerk: "أعمال الأسطح",
+svc_excerpt_dakwerk: "إصلاح وصيانة الأسطح لضمان منزل آمن ومقاوم لتسرب المياه.",
+svc_intro_dakwerk: "من تسربات بسيطة إلى صيانة كاملة: نعمل بأمان وبنظافة وبمواد قوية تدوم.",
+svc_b_dakwerk_1: "كشف تسربات السقف وإصلاحها.",
+svc_b_dakwerk_2: "فحص المزاريب وتصريف مياه الأمطار وإصلاحها.",
+svc_b_dakwerk_3: "استبدال القرميد وإصلاح حافة السقف.",
+svc_b_dakwerk_4: "صيانة وقائية لزيادة عمر السقف.",
+
+svc_title_gipsplaten: "تركيب ألواح الجبس",
+svc_excerpt_gipsplaten: "جدران وأسقف مستقيمة بألواح الجبس جاهزة للمعجون أو الدهان.",
+svc_intro_gipsplaten: "نركّب ألواح الجبس بدقة وسرعة مع فواصل نظيفة وبنية قوية.",
+svc_b_gipsplaten_1: "تركيب جدران فاصلة وجدران أمامية.",
+svc_b_gipsplaten_2: "خفض السقف أو إصلاحه بألواح الجبس.",
+svc_b_gipsplaten_3: "تشطيب الفواصل وتجهيزها للمعجون/الدهان.",
+svc_b_gipsplaten_4: "حلول للعزل وإخفاء الكابلات والأنابيب.",
+
+svc_title_behang: "تركيب ورق الجدران",
+svc_excerpt_behang: "تركيب ورق جدران بنتيجة نظيفة: ورق تجديد، نقشات، وورق صور.",
+svc_intro_behang: "من التحضير إلى التشطيب: سطح ناعم ومحاذاة دقيقة للورق.",
+svc_b_behang_1: "تحضير السطح: تسوية، إصلاح، وبرايمر.",
+svc_b_behang_2: "تركيب ورق تجديد للحصول على جدران ناعمة.",
+svc_b_behang_3: "محاذاة النقشات وتركيبها بدقة.",
+svc_b_behang_4: "تشطيب نظيف عند الحواف والزوايا والمقابس.",
+
 
 
 
