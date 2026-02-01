@@ -38,8 +38,38 @@
 }
 
 /* Scroll reveal */
-[data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+/* Scroll reveal */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .6s ease, transform .6s ease;
+  pointer-events: none; /* prevents invisible-but-clickable elements */
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Mobile: never hide content (prevents “blank but clickable” on phones) */
+@media (max-width: 768px) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
+
+/* Accessibility: reduced motion should not hide content */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    pointer-events: auto;
+  }
+}
+
 /* Focus styles for a11y */
 :focus-visible {
   outline: 2px solid theme(colors.bronze);
